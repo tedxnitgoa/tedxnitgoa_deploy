@@ -2,7 +2,7 @@ const express = require('express');
 const { body, validationResult } = require('express-validator');
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
-const Payment = require('./models/Payment.js');
+const Payment = require('./models/payment.js');
 const { generateTicketPDF } = require('./index.js'); // Import the function
 const router = express.Router();
 
