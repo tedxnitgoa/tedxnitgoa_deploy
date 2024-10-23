@@ -18,7 +18,7 @@ const validateOrderInput = [
   body('email').isEmail().normalizeEmail(),
   body('phone').isMobilePhone(),
   body('ticketType').isIn(['general', 'vip', 'student']),
-  body('quantity').isInt({ min: 1, max: 10 })
+  body('quantity').isInt({ min: 1, max: 100 })
 ];
 
 router.post('/create-order', validateOrderInput, async (req, res) => {
