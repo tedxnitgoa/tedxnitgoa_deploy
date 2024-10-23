@@ -51,35 +51,43 @@ router.post('/create-order', validateOrderInput, async (req, res) => {
 });
 
 router.post('/verify-payment', async (req, res) => {
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+  try {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
 
-  const body = razorpay_order_id + "|" + razorpay_payment_id;
-  const expectedSignature = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET).update(body.toString()).digest("hex");
+    const body = razorpay_order_id + "|" + razorpay_payment_id;
+    const expectedSignature = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET).update(body.toString()).digest("hex");
 
-  if (expectedSignature === razorpay_signature) {
-    const { amount, ticketType, quantity, name, email, phone } = req.body;
-    const payment = new Payment({
-      orderId: razorpay_order_id,
-      paymentId: razorpay_payment_id,
-      amount,
-      status: 'success',
-      ticketType,
-      quantity,
-      name,
-      email,
-      phone
-    });
-    await payment.save();
+    if (expectedSignature === razorpay_signature) {
+      const { amount, ticketType, quantity, name, email, phone } = req.body;
+      const payment = await Payment.create({
+        orderId: razorpay_order_id,
+        paymentId: razorpay_payment_id,
+        amount,
+        status: 'success',
+        ticketType,
+        quantity,
+        name,
+        email,
+        phone
+      });
 
-    const pdfFilePath = await generateTicketPDF({
-      name, email, phone, ticketType, quantity, orderId: razorpay_order_id, paymentId: razorpay_payment_id
-    });
+      if(!payment) {
+        return res.status(500).json({ success: false, message: 'Error saving payment'})
+      }
 
-    // Return success and file path to frontend for downloading
-    res.json({ success: true, message: 'Payment successful', pdfFilePath });
-  } else {
-    res.status(400).json({ success: false, message: 'Invalid signature' });
+      const pdfFilePath = await generateTicketPDF({
+        name, email, phone, ticketType, quantity, orderId: razorpay_order_id, paymentId: razorpay_payment_id
+      });
+
+      res.json({ success: true, message: 'Payment successful', pdfFilePath });
+    } else {
+      res.status(400).json({ success: false, message: 'Invalid signature' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
+
 
 module.exports = router;
