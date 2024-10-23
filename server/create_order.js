@@ -59,21 +59,21 @@ router.post('/verify-payment', async (req, res) => {
 
     if (expectedSignature === razorpay_signature) {
       const { amount, ticketType, quantity, name, email, phone } = req.body;
-      const payment = await Payment.create({
-        orderId: razorpay_order_id,
-        paymentId: razorpay_payment_id,
-        amount,
-        status: 'success',
-        ticketType,
-        quantity,
-        name,
-        email,
-        phone
-      });
+      // const payment = await Payment.create({
+      //   orderId: razorpay_order_id,
+      //   paymentId: razorpay_payment_id,
+      //   amount,
+      //   status: 'success',
+      //   ticketType,
+      //   quantity,
+      //   name,
+      //   email,
+      //   phone
+      // });
 
-      if(!payment) {
-        return res.status(500).json({ success: false, message: 'Error saving payment'})
-      }
+      // if(!payment) {
+      //   return res.status(500).json({ success: false, message: 'Error saving payment'})
+      // }
 
       const pdfFilePath = await generateTicketPDF({
         name, email, phone, ticketType, quantity, orderId: razorpay_order_id, paymentId: razorpay_payment_id
