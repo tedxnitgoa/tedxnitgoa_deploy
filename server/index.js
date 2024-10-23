@@ -31,9 +31,29 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/tedx_database")
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Error connecting to MongoDB:', err));
+const connectDb = async()=>{
+  try {
+      const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/tedx_database"
+      const mongoConnection = await mongoose.connect(MONGODB_URI);
+      console.log("Connected to MongoDB :",mongoConnection.connection.host);
+  } catch (error) {
+      console.log("Error connecting to MongoDB:",error);
+  }
+}
+
+connectDb()
+.then(()=>{
+    app.on("error",(error)=>{
+        console.log("ERR: ",error);
+        throw error
+    })
+    app.listen(process.env.PORT||3000,()=>{
+        console.log(`Server running on port ${process.env.PORT}`);
+    })
+})
+.catch((err)=>{
+    console.log("MongoDB connection error !!! ",err);
+})
 
 // Initialize Razorpay
 const razorpay = new Razorpay({
@@ -173,7 +193,4 @@ app.post('/api/submit-form', [
   }
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+
