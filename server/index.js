@@ -9,7 +9,7 @@ const crypto = require('crypto');
 const { body, validationResult } = require('express-validator');
 const Payment = require('./models/payment.js');
 const ContactForm = require('./models/ContactForm.js');
-const { generateTicketPDF } = require('./pdfUtils.js');
+const { generateTicketPDF } = require('./pdfutils.js');
 const path = require('path');
 
 const app = express();
