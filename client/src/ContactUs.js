@@ -21,7 +21,8 @@ const ContactUs = () => {
     setError("");
   
     try {
-      const response = await fetch('http://localhost:5000/api/submit-form', {
+      const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+      const response = await fetch(`${API_BASE_URL}/api/submit-form`, {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
