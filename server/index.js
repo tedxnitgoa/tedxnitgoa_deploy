@@ -11,6 +11,7 @@ const Payment = require('./models/payment.js');
 const ContactForm = require('./models/ContactForm.js');
 const { generateTicketPDF } = require('./pdfutils.js');
 const path = require('path');
+const {connectCloudinary} = require("./cloudinary/config.js");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -40,7 +41,7 @@ const connectDb = async()=>{
       console.log("Error connecting to MongoDB:",error);
   }
 }
-
+connectCloudinary();
 connectDb()
 .then(()=>{
     app.on("error",(error)=>{
@@ -144,10 +145,10 @@ app.post('/api/verify-payment', async (req, res) => {
         name, email, phone, ticketType, quantity, orderId: razorpay_order_id, paymentId: razorpay_payment_id
       });
 
-      const pdfFileName = `${razorpay_order_id}.pdf`;
-      const pdfUrl = `/api/download-ticket/${pdfFileName}`;
+      // const pdfFileName = `${razorpay_order_id}.pdf`;
+      // const pdfUrl = `/api/download-ticket/${pdfFileName}`;
 
-      res.json({ success: true, message: 'Payment successful', pdfUrl });
+      res.json({ success: true, message: 'Payment successful', pdfFilePath });
     } catch (error) {
       console.error('Error processing payment or generating PDF:', error);
       res.status(500).json({ success: false, message: 'Error processing payment', error: error.message });

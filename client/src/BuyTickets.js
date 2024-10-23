@@ -97,9 +97,10 @@ const BuyTickets = () => {
             }
 
             const verifyData = await verifyResponse.json();
+            
             if (verifyData.success) {
               setDialogMessage('Payment successful! Your ticket is ready for download.');
-              setPdfUrl(verifyData.pdfUrl);
+              setPdfUrl(verifyData.pdfFilePath);
               setDialogOpen(true);
               fetchAvailableTickets();
             } else {
@@ -117,6 +118,12 @@ const BuyTickets = () => {
         },
         theme: {
           color: '#e62b1e'
+        },
+        method: {
+          card: true, // Enable card payments
+          netbanking: true, // Enable net banking
+          upi: true, // Disable UPI (including QR payments)
+          wallet: true, // Enable wallets like PayTM, etc.
         }
       };
 
@@ -143,11 +150,16 @@ const BuyTickets = () => {
   };
 
   const handleDownloadTicket = () => {
+    console.log("dasf",pdfUrl);
+    
     if (pdfUrl) {
-      window.open(`${API_BASE_URL}${pdfUrl}`, '_blank');
+      console.log(`Downloading ticket from: ${pdfUrl}`);
+      window.open(pdfUrl, '_blank');
+    } else {
+      console.error("PDF URL is not available");
     }
   };
-
+  
   if (availableTickets === 0) {
     return (
       <div className="buy-tickets-container">
@@ -236,11 +248,9 @@ const BuyTickets = () => {
         <div className="dialog-overlay">
           <div className="dialog">
             <p>{dialogMessage}</p>
-            {pdfUrl && (
               <button onClick={handleDownloadTicket} className="download-button">
                 Download Ticket
               </button>
-            )}
             <button onClick={handleCloseDialog}>Close</button>
           </div>
         </div>
