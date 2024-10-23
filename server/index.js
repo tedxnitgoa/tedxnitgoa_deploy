@@ -7,9 +7,9 @@ const rateLimit = require('express-rate-limit');
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
 const { body, validationResult } = require('express-validator');
-const Payment = require('./models/Payment');
-const ContactForm = require('./models/ContactForm');
-const { generateTicketPDF } = require('./pdfUtils');
+const Payment = require('./models/Payment.js');
+const ContactForm = require('./models/ContactForm.js');
+const { generateTicketPDF } = require('./pdfUtils.js');
 const path = require('path');
 
 const app = express();
