@@ -71,7 +71,7 @@ const validateOrderInput = [
 ];
 
 // Routes
-app.get("/health",()=>{
+app.get("/api/health",()=>{
   res.status(200).json({"status":"running"});
 })
 app.get('/api/available-tickets', async (req, res) => {
