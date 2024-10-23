@@ -1,0 +1,175 @@
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const Razorpay = require('razorpay');
+const crypto = require('crypto');
+const { body, validationResult } = require('express-validator');
+const Payment = require('./models/Payment');
+const ContactForm = require('./models/ContactForm');
+const { generateTicketPDF } = require('./pdfUtils');
+const path = require('path');
+
+const app = express();
+const port = process.env.PORT || 5000;
+
+// Middleware
+app.use(cors({
+  origin:process.env.FRONTEND_URL
+}));
+app.use(express.json());
+app.use(helmet());
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100
+});
+app.use('/api', limiter);
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/tedx_database')
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Error connecting to MongoDB:', err));
+
+// Initialize Razorpay
+const razorpay = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET
+});
+
+// Validation middleware
+const validateOrderInput = [
+  body('name').trim().isLength({ min: 2, max: 100 }).escape(),
+  body('email').isEmail().normalizeEmail(),
+  body('phone').isMobilePhone(),
+  body('ticketType').isIn(['general', 'vip', 'student']),
+  body('quantity').isInt({ min: 1, max: 100 })
+];
+
+// Routes
+app.get('/api/available-tickets', async (req, res) => {
+  try {
+    const totalTicketsSold = await Payment.aggregate([
+      { $match: { status: 'success' } },
+      { $group: { _id: null, total: { $sum: '$quantity' } } }
+    ]);
+
+    const availableTickets = 100 - (totalTicketsSold[0]?.total || 0);
+    res.json({ availableTickets });
+  } catch (error) {
+    console.error('Error fetching available tickets:', error);
+    res.status(500).json({ message: 'Error fetching available tickets' });
+  }
+});
+
+app.post('/api/create-order', validateOrderInput, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ message: 'Validation failed', errors: errors.array() });
+  }
+
+  const { name, email, phone, ticketType, quantity } = req.body;
+
+  try {
+    const ticketPrices = {
+      general: 1,
+      vip: 2000,
+      student: 500
+    };
+    const amount = ticketPrices[ticketType] * quantity;
+
+    const order = await razorpay.orders.create({
+      amount: amount * 100,
+      currency: 'INR',
+      receipt: `receipt_${Date.now()}`,
+      notes: { name, email, phone, ticketType, quantity }
+    });
+
+    res.json({ orderId: order.id, amount: order.amount, currency: order.currency, razorpayKeyId: process.env.RAZORPAY_KEY_ID });
+  } catch (error) {
+    res.status(500).json({ message: 'Error creating order', error: error.message });
+  }
+});
+
+app.post('/api/verify-payment', async (req, res) => {
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+
+  const body = razorpay_order_id + "|" + razorpay_payment_id;
+  const expectedSignature = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET).update(body.toString()).digest("hex");
+
+  if (expectedSignature === razorpay_signature) {
+    try {
+      const { amount, ticketType, quantity, name, email, phone } = req.body;
+      const payment = new Payment({
+        orderId: razorpay_order_id,
+        paymentId: razorpay_payment_id,
+        amount,
+        status: 'success',
+        ticketType,
+        quantity,
+        name,
+        email,
+        phone
+      });
+      await payment.save();
+
+      const pdfFilePath = await generateTicketPDF({
+        name, email, phone, ticketType, quantity, orderId: razorpay_order_id, paymentId: razorpay_payment_id
+      });
+
+      const pdfFileName = `${razorpay_order_id}.pdf`;
+      const pdfUrl = `/api/download-ticket/${pdfFileName}`;
+
+      res.json({ success: true, message: 'Payment successful', pdfUrl });
+    } catch (error) {
+      console.error('Error processing payment or generating PDF:', error);
+      res.status(500).json({ success: false, message: 'Error processing payment', error: error.message });
+    }
+  } else {
+    res.status(400).json({ success: false, message: 'Invalid signature' });
+  }
+});
+
+// Route to serve PDF files
+app.get('/api/download-ticket/:filename', (req, res) => {
+  const { filename } = req.params;
+  const filePath = path.join(__dirname, 'tickets', filename);
+  res.download(filePath, (err) => {
+    if (err) {
+      res.status(404).json({ message: 'Ticket not found' });
+    }
+  });
+});
+
+// New route for contact form submission
+app.post('/api/submit-form', [
+  body('firstName').trim().isLength({ min: 2, max: 100 }).escape(),
+  body('lastName').trim().optional().isLength({ max: 100 }).escape(),
+  body('email').isEmail().normalizeEmail(),
+  body('contactNumber').isMobilePhone(),
+  body('comments').trim().optional().isLength({ max: 1000 }).escape(),
+  body('newsletter').isBoolean()
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const newContactForm = new ContactForm(req.body);
+    await newContactForm.save();
+    console.log('Form submitted:', newContactForm);
+    res.status(200).json({ message: 'Form submitted successfully' });
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    res.status(500).json({ message: 'Error submitting form' });
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
