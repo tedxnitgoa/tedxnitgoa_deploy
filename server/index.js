@@ -157,6 +157,41 @@ app.post('/api/verify-payment', async (req, res) => {
   }
 });
 
+app.post('/api/payment-webhook', async (req, res) => {
+  try {
+    const { event, payload } = req.body;
+
+    // Only process 'payment.captured' events
+    if (event === 'payment.captured') {
+      const { id: razorpay_payment_id, order_id: razorpay_order_id, status, amount } = payload.payment.entity;
+
+      // Update the payment status to 'success' based on the webhook data
+      const payment = await Payment.findOne({ orderId: razorpay_order_id });
+
+      if (payment) {
+        payment.status = status;  // Status should be 'captured' for successful payments
+        payment.paymentId = razorpay_payment_id; // Save the paymentId for future references
+        payment.amount = amount;  // Ensure the amount matches what was charged
+
+        await payment.save();
+        console.log(`Payment ${razorpay_payment_id} for order ${razorpay_order_id} captured successfully.`);
+      } else {
+        console.error(`Payment with orderId ${razorpay_order_id} not found.`);
+      }
+
+      // Respond with success status
+      res.status(200).json({ success: true });
+    } else {
+      // If it's not the event we're interested in, just return a 400 status
+      res.status(400).json({ success: false, message: 'Unsupported event' });
+    }
+  } catch (error) {
+    console.error('Error processing webhook:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+
 // Route to serve PDF files
 app.get('/api/download-ticket/:filename', (req, res) => {
   const { filename } = req.params;
