@@ -239,12 +239,13 @@ const EventReachSection = () => {
       </p>
       
       <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
+        display: 'flex',
+        flexDirection: 'column',
         gap: '2rem',
         maxWidth: '1000px',
         margin: '0 auto'
       }}>
+
         <div style={{ textAlign: 'center' }}>
           <img src="/attendance.png" alt="Attendees" style={{ height: '60px' }} />
           <h3 style={{ fontSize: '1.5rem', marginTop: '1rem',color:'#eeeeee' }}>Attendees</h3>

@@ -41,7 +41,7 @@ const TedInfoPage = () => {
       <h2 className="tedx-title" style={{ color: '#eb0028' }}> About NIT Goa</h2>
 
       <div className="tedx-content">
-        <div className="tedx-image-container">
+        <div className="">
           <img src="/abtnit77.jpg" alt="TEDx Event" className="ted-image" />
         </div>
 

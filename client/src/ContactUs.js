@@ -21,8 +21,7 @@ const ContactUs = () => {
     setError("");
   
     try {
-      const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
-      const response = await fetch(`${API_BASE_URL}/api/submit-form`, {
+      const response = await fetch('http://localhost:5000/api/submit-form', {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
@@ -73,9 +72,19 @@ const ContactUs = () => {
         <div>
           <p className="contactUs_title__Kgi-W">Leave Us a Message!!</p>
           <p className="contactUs_para__kMKHs">
+            
           </p>
+         
+    
+      
+    
+
         </div>
-        <img className="contactUs_image__HnRNf" src="/oc.png" alt="" />
+      
+        <div class="Maps">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30806.6191706304!2d73.98994803428646!3d15.167820940042557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbe4dade7a19b97%3A0x9db46cb6ea1d0d3f!2sNIT%20Goa%20Permanent%20Campus!5e0!3m2!1sen!2sin!4v1706522628623!5m2!1sen!2sin"
+        width="400" height="300" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
       </div>
       <div className="contactUs_formContainer__tPtU6">
         <form name="submit-to-google-sheet" className="contactUs_form__+xwV4" onSubmit={handleSubmit}>
