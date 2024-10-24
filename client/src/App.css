@@ -1791,7 +1791,19 @@ p {
     align-items: center;
     text-align: center;
   }
-
+  @media screen and (max-width: 480px) {
+    .serendipity-logo {
+        max-width: 85%;
+    }
+  
+    .event-details h2 {
+        font-size: 1.2rem;
+    }
+  
+    .event-details p {
+        font-size: 0.9rem;
+    }
+  }
   .event-logo {
     margin-right: 0;
     margin-bottom: 20px;
