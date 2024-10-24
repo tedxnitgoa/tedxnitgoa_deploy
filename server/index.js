@@ -17,8 +17,18 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
+const allowedOrigins = process.env.FRONTEND_URL.split(",");
+if (!allowedOrigins) {
+  allowedOrigins = "http://localhost:3000"
+}
 app.use(cors({
-  origin:process.env.FRONTEND_URL || 'http://localhost:3000',
+  rigin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+    } else {
+        callback(new Error("Not allowed by CORS"));
+    }
+},
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 }));
 app.use(express.json());
