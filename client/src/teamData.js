@@ -5,16 +5,15 @@ const teamData = [
             { name: 'Nisarg Shah', role: 'License & Marketing Lead', image: 'TeamFolder/licensee.jpeg', linkedin: 'https://www.linkedin.com/in/nsshah2003', instagram: '#', email: '#' },
         ]
     },
-    // {
-    //     title: 'Organisers',
-    //     members: [
-    //         { name: 'Krishna Kesarwani', role: 'Sponsorship Core', image: '/TeamFolder/org1.jpeg', phone: '#', linkedin: '#', instagram: '#', email: '#' },
-    //         { name: 'Krishna Kesarwani', role: 'PR Head', image: '/TeamFolder/org2.jpeg', phone: '#', linkedin: '#', instagram: '#', email: '#' },
-    //         { name: 'Krishna Kesarwani', role: 'Organiser', image: '/TeamFolder/org3.jpeg', phone: '#', linkedin: '#', instagram: '#', email: '#' },
-    //         { name: 'Krishna Kesarwani', role: 'Videography Head', image: '/TeamFolder/org4.jpeg', phone: '#', linkedin: '#', instagram: '#', email: '#' },
-    //         // Add more members
-    //     ]
-    // },
+    {
+        title: 'Organisers',
+        members: [
+            { name: 'Navodith Sheth', role: 'Organiser', image: '/TeamFolder/navodith.jpeg', linkedin: 'https://www.linkedin.com/in/navodith-sheth-a7aa592a6', instagram: '#', email: '23ece1023@nitgoa.ac.in' },
+            { name: 'Aditya Madkaikar', role: 'Organiser', image: '/TeamFolder/aditya.jpeg', linkedin: 'https://www.linkedin.com/in/aditya-madkaikar-833373280', instagram: '#', email: '23cse1003@nitgoa.ac.in' },
+            { name: 'Mahek Bhandari', role: 'Organiser', image: '/TeamFolder/mahek-bhandari.jpeg', linkedin: 'https://www.linkedin.com/in/mahek-bhandari-abb2102b4', instagram: '#', email: '23eee1010@nitgoa.ac.in' },
+            // Add more members
+        ]
+    },
     {
         title: 'Core Team',
         members: [
@@ -25,7 +24,7 @@ const teamData = [
             { name: 'Jeednya Sade', role: 'Design Lead', image: '/TeamFolder/jeednya-sade.jpeg', linkedin: 'https://www.linkedin.com/in/jeednya-bhaskar-sade-98a48922a', github: 'https://github.com/JBS20', email: 'sadejeednya@gmail.com' },
             { name: 'Krish Vaghela', role: 'Tech Lead', image: '/TeamFolder/krish-vaghela.jpg', linkedin: 'https://www.linkedin.com/in/krish-vaghela-73022429a', github: 'https://github.com/KrishVaghela', email: '11a11165krish2019@gmail.com' },
             { name: 'Raunak Soni', role: 'Culinary Lead', image: '/TeamFolder/raunak-soni.JPG', linkedin: '#', instagram: '#', email: '#' },
-            { name: 'Mahek Bhandari', role: 'Planning Lead', image: '/TeamFolder/mahek-bhandari.jpeg', linkedin: '#', instagram: '#', email: '#' },
+            { name: 'Mahek Bhandari', role: 'Planning Lead', image: '/TeamFolder/mahek-bhandari.jpeg', linkedin: '#', instagram: '#', email: '23eee1010@nitgoa.ac.in' },
             // Add more members
         ]
     },
