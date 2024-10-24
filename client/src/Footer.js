@@ -116,7 +116,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="footerStyles_credits__Kg8YY">© Copyright by TEDxNITGOA. This independent TEDx events is operated under license from TED.</div>
+          <div className="footerStyles_credits__Kg8YY">© Copyright by TEDxNIT GOA. This independent TEDx events is operated under license from TED.</div>
         </footer>
       </div>
     </div>
