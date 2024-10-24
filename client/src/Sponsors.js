@@ -36,38 +36,17 @@ const SponsorWheel = () => {
   ];
 
   return (
-    <div style={{ 
-      display: 'grid', 
-      gridTemplateColumns: '1fr 1fr', 
-      gap: '2rem', 
-      minHeight: '90vh', 
-      alignItems: 'center',
-      width: '100%',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    }}>
-      <div style={{ 
-        width: '100%', 
-        paddingBottom: '100%', 
-        position: 'relative',
-        maxWidth: '600px',
-        margin: '0 auto'
-      }}>
+    <div className="sponsor-wheel-container">
+      <div className="wheel-container">
         <svg 
           viewBox="0 0 400 400" 
-          style={{ 
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%'
-          }}
+          className="wheel-svg"
           preserveAspectRatio="xMidYMid meet"
         >
           <circle cx="200" cy="200" r="80" fill="white" />
-          <text x="200" y="185" textAnchor="middle" className="font-bold text-lg" fill="black">Why Sponsor</text>
-          <text x="200" y="210" textAnchor="middle" className="font-bold text-lg" fill="rgb(255, 45, 45)">TEDxNIT Goa</text>
-          <text x="200" y="235" textAnchor="middle" className="font-bold text-lg" fill="black">?</text>
+          <text x="200" y="185" textAnchor="middle" className="wheel-center-text" fill="black">Why Sponsor</text>
+          <text x="200" y="210" textAnchor="middle" className="wheel-center-text" fill="rgb(255, 45, 45)">TEDxNIT Goa</text>
+          <text x="200" y="235" textAnchor="middle" className="wheel-center-text" fill="black">?</text>
 
           {sections.map((section, index) => {
             const angle = (index * 72 - 90) * (Math.PI / 180);
