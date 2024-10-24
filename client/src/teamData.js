@@ -6,11 +6,11 @@ const teamData = [
         ]
     },
     {
-        title: 'Organisers',
+        title: 'Organizers',
         members: [
-            { name: 'Navodith Sheth', role: 'Organiser', image: '/TeamFolder/navodith.jpeg', linkedin: 'https://www.linkedin.com/in/navodith-sheth-a7aa592a6', instagram: '#', email: '23ece1023@nitgoa.ac.in' },
-            { name: 'Aditya Madkaikar', role: 'Organiser', image: '/TeamFolder/aditya.jpeg', linkedin: 'https://www.linkedin.com/in/aditya-madkaikar-833373280', instagram: '#', email: '23cse1003@nitgoa.ac.in' },
-            { name: 'Mahek Bhandari', role: 'Organiser', image: '/TeamFolder/mahek-bhandari.jpeg', linkedin: 'https://www.linkedin.com/in/mahek-bhandari-abb2102b4', instagram: '#', email: '23eee1010@nitgoa.ac.in' },
+            { name: 'Navodith Sheth', role: 'Organizer', image: '/TeamFolder/navodith.jpeg', linkedin: 'https://www.linkedin.com/in/navodith-sheth-a7aa592a6', instagram: '#', email: '23ece1023@nitgoa.ac.in' },
+            { name: 'Aditya Madkaikar', role: 'Organizer', image: '/TeamFolder/aditya.jpeg', linkedin: 'https://www.linkedin.com/in/aditya-madkaikar-833373280', instagram: '#', email: '23cse1003@nitgoa.ac.in' },
+            { name: 'Mahek Bhandari', role: 'Organizer', image: '/TeamFolder/mahek-bhandari.jpeg', linkedin: 'https://www.linkedin.com/in/mahek-bhandari-abb2102b4', instagram: '#', email: '23eee1010@nitgoa.ac.in' },
             // Add more members
         ]
     },
