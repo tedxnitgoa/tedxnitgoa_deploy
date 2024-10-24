@@ -47,7 +47,7 @@ const Footer = () => {
       <div className="relative w-full bg-red-600">
         <div className="w-full" style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', width: '100vw' }}>
           <img
-            src="/TedX NITG Footer final Pakka.png"
+            src="/TedX NITG Footer surely final.png"
             alt="Beyond the ordinary into the extraordinary"
             className="w-full h-auto object-cover"
             style={{ maxWidth: '100vw' }}
