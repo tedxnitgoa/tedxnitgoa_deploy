@@ -23,7 +23,7 @@ const teamData = [
             { name: 'Raghav Shastri', role: 'Operations Lead', image: '/TeamFolder/raghav-shastri.jpg', linkedin: 'https://www.linkedin.com/in/raghav-shastri-b53111230', instagram: '#', email: 'raghavshastri1604@nitgoa.ac.in' },
             { name: 'Jeednya Sade', role: 'Design Lead', image: '/TeamFolder/jeednya-sade.jpeg', linkedin: 'https://www.linkedin.com/in/jeednya-bhaskar-sade-98a48922a', github: 'https://github.com/JBS20', email: 'sadejeednya@gmail.com' },
             { name: 'Krish Vaghela', role: 'Tech Lead', image: '/TeamFolder/krish-vaghela.jpg', linkedin: 'https://www.linkedin.com/in/krish-vaghela-73022429a', github: 'https://github.com/KrishVaghela', email: '11a11165krish2019@gmail.com' },
-            { name: 'Raunak Soni', role: 'Culinary Lead', image: '/TeamFolder/raunak-soni.JPG', linkedin: '#', instagram: '#', email: '#' },
+            { name: 'Rounak Soni', role: 'Culinary Lead', image: '/TeamFolder/raunak-soni.JPG', linkedin: 'https://www.linkedin.com/in/rounak-soni-9a9203229', instagram: '#', email: 'rounaksoni23@gmail.com' },
             { name: 'Mahek Bhandari', role: 'Planning Lead', image: '/TeamFolder/mahek-bhandari.jpeg', linkedin: '#', instagram: '#', email: '23eee1010@nitgoa.ac.in' },
             // Add more members
         ]
