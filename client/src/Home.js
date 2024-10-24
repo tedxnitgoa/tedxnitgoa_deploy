@@ -68,7 +68,7 @@ const Home = () => {
           </div>
           <div className="event-details">
             <h2>26th October 2024</h2>
-            <p>9 am - 6 pm</p>
+            <p>3 pm - 6 pm</p>
             <p>Goa, India</p>
             <p>Discover the magic of unexpected connections, and explore the power of ideas unfolding into life's little miracles!</p>
             <Link to="/BuyTickets" className="buy-tickets-btn">BUY TICKETS</Link>
