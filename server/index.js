@@ -145,8 +145,6 @@ app.post('/api/verify-payment', async (req, res) => {
         name, email, phone, ticketType, quantity, orderId: razorpay_order_id, paymentId: razorpay_payment_id
       });
 
-      // const pdfFileName = `${razorpay_order_id}.pdf`;
-      // const pdfUrl = `/api/download-ticket/${pdfFileName}`;
 
       res.json({ success: true, message: 'Payment successful', pdfFilePath });
     } catch (error) {

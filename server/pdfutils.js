@@ -1,9 +1,9 @@
-const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 const QRCode = require('qrcode');
 const os = require("os");
 const { uploadOnCloudinary } = require('./cloudinary/cloudinary');
+const html_to_pdf = require('html-pdf-node');
 
 const generateTicketPDF = async (paymentData) => {
   const { name, email, phone, ticketType, quantity, orderId, paymentId } = paymentData;
@@ -51,30 +51,41 @@ const generateTicketPDF = async (paymentData) => {
   }
 
   const filePath = path.join(ticketsDir, `${orderId}.pdf`);
-
-  // Use Puppeteer to generate the PDF from HTML
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
   
   // Set content and generate PDF
-  await page.setContent(ticketHtml, { waitUntil: 'load' });
-  await page.pdf({ path: filePath, format: 'A4' });
+  let options = { format: 'A4' };
+  
+  let file = { content: ticketHtml };
+  try {
+    // Generate the PDF buffer from the file
+    const pdfBuffer = await html_to_pdf.generatePdf(file, options);
 
-  await browser.close();
+    // Save the PDF buffer to the file path
+    fs.writeFileSync(filePath, pdfBuffer);
+    console.log(`PDF stored temporarily at: ${filePath}`);
 
-  // Upload the generated PDF to Cloudinary
-  const uploadedPdf = await uploadOnCloudinary(filePath);
+    // Upload the generated PDF to Cloudinary
+    const uploadedPdf = await uploadOnCloudinary(filePath);
 
-  // Delete the PDF file after uploading
-  if (fs.existsSync(filePath)) {
-    fs.unlinkSync(filePath);
+    // Delete the PDF file after uploading
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+
+    // Handle if the PDF upload fails
+    if (!uploadedPdf) {
+      throw new Error("Some error occurred while uploading the PDF to Cloudinary");
+    }
+    
+    // Return the secure URL of the uploaded PDF
+    return uploadedPdf.secure_url;
+
+  } catch (error) {
+    console.error("Error during PDF generation or upload:", error);
+    throw error; // Re-throw the error to be handled by the calling function
   }
 
-  if (!uploadedPdf) {
-    throw new Error("Some error occurred while uploading the PDF to Cloudinary");
-  }
 
-  return uploadedPdf?.secure_url;
 };
 
 module.exports = { generateTicketPDF };
