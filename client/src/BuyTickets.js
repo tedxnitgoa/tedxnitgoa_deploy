@@ -17,15 +17,10 @@ const BuyTickets = () => {
   const [dialogMessage, setDialogMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [pdfUrl, setPdfUrl] = useState(null);
-  const [urlToggle, setUrlToggle] = useState(false);
 
   useEffect(() => {
     fetchAvailableTickets();
   }, []);
-
-  useEffect(()=>{
-
-  },[urlToggle])
 
   const fetchAvailableTickets = async () => {
     try {
@@ -107,7 +102,6 @@ const BuyTickets = () => {
               console.log(verifyData);
               setDialogMessage('Payment successful! Your ticket is ready for download.');
               setPdfUrl(verifyData.pdfFilePath);
-              setUrlToggle(true);
               setDialogOpen(true);
               fetchAvailableTickets();
             } else {

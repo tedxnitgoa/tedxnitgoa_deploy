@@ -3,12 +3,12 @@ const path = require('path');
 const QRCode = require('qrcode');
 const os = require("os");
 const { uploadOnCloudinary } = require('./cloudinary/cloudinary');
-const html_to_pdf = require('html-pdf-node');
+const PDFDocument = require('pdfkit');
 
 const generateTicketPDF = async (paymentData) => {
   const { name, email, phone, ticketType, quantity, orderId, paymentId } = paymentData;
   const verificationId = `${orderId}-${paymentId}`;
-  
+
   // Generate QR code
   const ticketInfo = JSON.stringify({
     id: verificationId,
@@ -25,25 +25,6 @@ const generateTicketPDF = async (paymentData) => {
 
   const qrCodeData = await QRCode.toDataURL(ticketInfo);
 
-  // Generate HTML content for the ticket
-  const ticketHtml = `
-    <html>
-      <body style="font-family: Arial, sans-serif; padding: 20px;">
-        <h1 style="text-align: center;">TEDxNITGOA Ticket</h1>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Ticket Type:</strong> ${ticketType}</p>
-        <p><strong>Quantity:</strong> ${quantity}</p>
-        <p><strong>Order ID:</strong> ${orderId}</p>
-        <p><strong>Transaction ID:</strong> ${paymentId}</p>
-        <div style="text-align: center; margin-top: 20px;">
-          <img src="${qrCodeData}" alt="QR Code" />
-        </div>
-      </body>
-    </html>
-  `;
-
   // Create a temporary directory for storing the PDF
   const ticketsDir = path.join(os.tmpdir(), 'tickets');
   if (!fs.existsSync(ticketsDir)) {
@@ -51,17 +32,60 @@ const generateTicketPDF = async (paymentData) => {
   }
 
   const filePath = path.join(ticketsDir, `${orderId}.pdf`);
-  
-  // Set content and generate PDF
-  let options = { format: 'A4' };
-  
-  let file = { content: ticketHtml };
-  try {
-    // Generate the PDF buffer from the file
-    const pdfBuffer = await html_to_pdf.generatePdf(file, options);
 
-    // Save the PDF buffer to the file path
-    fs.writeFileSync(filePath, pdfBuffer);
+  try {
+    // Initialize a new PDF document
+    const doc = new PDFDocument({ size: 'A4' });
+    
+    // Write the PDF to a file
+    const pdfStream = fs.createWriteStream(filePath);
+    doc.pipe(pdfStream);
+
+    // Add title and ticket details with beautified structure
+    doc
+      .fontSize(24)
+      .text('TEDxNITGOA Ticket', { align: 'center' })
+      .moveDown(1.5);
+
+    doc
+      .fontSize(16)
+      .text('Ticket Information:', { underline: true })
+      .moveDown(0.5);
+
+    doc
+      .fontSize(14)
+      .text(`Name: ${name}`)
+      .moveDown(0.3)
+      .text(`Email: ${email}`)
+      .moveDown(0.3)
+      .text(`Phone: ${phone}`)
+      .moveDown(0.3)
+      .text(`Ticket Type: ${ticketType}`)
+      .moveDown(0.3)
+      .text(`Quantity: ${quantity}`)
+      .moveDown(0.3)
+      .text(`Order ID: ${orderId}`)
+      .moveDown(0.3)
+      .text(`Transaction ID: ${paymentId}`)
+      .moveDown(1.5);
+
+    // Add QR code image to the PDF
+    doc
+      .image(await convertDataUrlToBuffer(qrCodeData), {
+        fit: [150, 150],
+        align: 'center',
+        valign: 'center',
+      });
+
+    // Finalize the PDF
+    doc.end();
+
+    // Wait for the PDF file to be written before proceeding
+    await new Promise((resolve, reject) => {
+      pdfStream.on('finish', resolve);
+      pdfStream.on('error', reject);
+    });
+
     console.log(`PDF stored temporarily at: ${filePath}`);
 
     // Upload the generated PDF to Cloudinary
@@ -76,16 +100,20 @@ const generateTicketPDF = async (paymentData) => {
     if (!uploadedPdf) {
       throw new Error("Some error occurred while uploading the PDF to Cloudinary");
     }
-    
+
     // Return the secure URL of the uploaded PDF
     return uploadedPdf.secure_url;
 
   } catch (error) {
     console.error("Error during PDF generation or upload:", error);
-    throw error; // Re-throw the error to be handled by the calling function
+    throw error;
   }
+};
 
-
+// Helper function to convert Data URL (Base64) to Buffer
+const convertDataUrlToBuffer = (dataUrl) => {
+  const base64Data = dataUrl.split(',')[1];
+  return Buffer.from(base64Data, 'base64');
 };
 
 module.exports = { generateTicketPDF };
