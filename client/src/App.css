@@ -1831,3 +1831,118 @@ p {
   background-color: white; /* Change background to white on hover */
   color: black; /* Change text color to black on hover */
 }
+/* Base styles for the sponsor wheel container */
+.sponsor-wheel-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  min-height: 90vh;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.wheel-container {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.wheel-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.description-container {
+  padding: 2rem;
+}
+
+/* Text styles for the wheel */
+.wheel-center-text {
+  font-size: 16px;
+}
+
+.section-text {
+  font-size: 14px;
+}
+
+/* Media query for tablets */
+@media screen and (max-width: 1024px) {
+  .sponsor-wheel-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .wheel-container {
+    max-width: 500px;
+    padding-bottom: 500px;
+  }
+
+  .description-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .wheel-center-text {
+    font-size: 14px;
+  }
+
+  .section-text {
+    font-size: 12px;
+  }
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+  .sponsor-wheel-container {
+    min-height: auto;
+    padding: 10px;
+  }
+
+  .wheel-container {
+    max-width: 100%;
+    padding-bottom: 100%;
+  }
+
+  .description-container {
+    padding: 1rem;
+  }
+
+  .wheel-center-text {
+    font-size: 12px;
+  }
+
+  .section-text {
+    font-size: 10px;
+  }
+}
+
+/* Media query for small mobile devices */
+@media screen and (max-width: 480px) {
+  .sponsor-wheel-container {
+    gap: 0.5rem;
+  }
+
+  .description-container {
+    padding: 0.5rem;
+  }
+}
+
+/* Animation for description box */
+.description-box {
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.description-box.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
