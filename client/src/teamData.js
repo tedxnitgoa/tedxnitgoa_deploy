@@ -2,7 +2,7 @@ const teamData = [
     {
         title: 'License Holder',
         members: [
-            { name: 'Nisarg Shah', role: 'License & Marketing Core', image: 'TeamFolder/licensee.jpeg', linkedin: 'https://www.linkedin.com/in/nsshah2003', instagram: '#', email: '#' },
+            { name: 'Nisarg Shah', role: 'License & Marketing Lead', image: 'TeamFolder/licensee.jpeg', linkedin: 'https://www.linkedin.com/in/nsshah2003', instagram: '#', email: '#' },
         ]
     },
     // {
@@ -35,9 +35,9 @@ const teamData = [
             { name: 'Krishna Kesarwani', role: 'Tech Team', image: '/TeamFolder/krishna-kesarwani.jpeg', linkedin: 'https://www.linkedin.com/in/krishna-kesarwani', github: 'https://github.com/KK-is-Coding', email: 'kesarwani.krishna12@gmail.com' },
             { name: 'Vishal Pratap', role: 'Tech Team', image: '/TeamFolder/vishal-pratap.jpeg', linkedin: 'https://www.linkedin.com/in/vishal-pratap-b85a17255', github: 'https://github.com/Vishi-77', email: 'vishalpratap2468@gmail.com' },
             { name: 'Aryan N. Perli', role: 'Tech Team', image: '/TeamFolder/aryan-perli.jpeg', linkedin: 'https://in.linkedin.com/in/aryan-nageswararao-perli-b2045224a', github: 'https://github.com/perliaryan', email: 'perliaryannageswararao@gmail.com' },
+            { name: 'Shravani Pawar', role: 'Tech Team', image: '/TeamFolder/shrawani-pawar.jpg', linkedin: 'https://www.linkedin.com/in/shravani-pawar-304435293', github: 'https://github.com/shravani1712', email: 'pawarshravani306@gmail.com' },
+            { name: 'Sagar Shirgaonkar', role: 'Tech Team', image: '/TeamFolder/sagar-shirgaonkar.jpg', linkedin: 'https://www.linkedin.com/in/sagar-shirgaonkar-ba0859270', github: 'https://github.com/Sagar-1103', email: 'sagarshirgaonkar59511@gmail.com' },
             { name: 'Vedant Ghadi', role: 'Graphic Designer', image: '/TeamFolder/vedant-ghadi.jpg', linkedin: 'http://linkedin.com/in/vedant-ghadi-6aa47415b', github: 'http://github.com/vedvery5', email: 'vedantghadi02@gmail.com' },
-            { name: 'shravani pawar', role: 'Tech Team', image: '/TeamFolder/shrawani.jpg', linkedin: 'https://www.linkedin.com/in/shravani-pawar-304435293/', github: 'https://github.com/shravani1712', email: 'pawarshravani306@gmail.com ' },
-            { name: 'sagar shirgaonkar', role: 'Tech Team', image: '/TeamFolder/sagardp.jpg', linkedin: 'https://www.linkedin.com/in/sagar-shirgaonkar-ba0859270/', github: 'https://github.com/Sagar-1103', email: 'sagarshirgaonkar59511@gmail.com ' },
             // Add more members
         ]
     }
