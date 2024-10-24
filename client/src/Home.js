@@ -34,7 +34,7 @@ const TedInfoPage = () => {
         </div>
 
         <div className="ted-image-container">
-          <img src="/abtted11.jpg" alt="TED Conference" className="ted-image" />
+          <img src="/abtnit331.jpg" alt="TED Conference" className="ted-image" />
         </div>
       </div>
 
