@@ -428,7 +428,7 @@ svg {
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 5px;
   /* This adds space between the links */
   justify-content: center;
   /* Center the links */
@@ -1527,14 +1527,12 @@ body .container .card .box .content {
 
 body .container .card .box .content h2 {
   position: absolute;
-  font-size: 50rem;
-  /* Increase the size to make the icon cover the card */
-  color: rgba(255, 255, 255, 0.1);
-  /* Set the default color */
-  top: -10px;
-  right: 30px;
-  font-size: 8rem;
-  color: rgba(255, 255, 255, 0.1);
+  top: 40%;  /* Center vertically */
+  left: 40%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Perfect centering */
+  font-size: 8rem; /* Adjust size based on card size */
+  color: rgba(255, 255, 255, 0.1); /* Set icon color */
+  z-index: 0; /* Ensure it's behind other content */
 }
 
 body .container .card .box .content h3 {
@@ -1600,10 +1598,8 @@ body .container .card:hover .box .content h2 {
 }
 
 .icon {
-  font-size: 20rem;
-  /* Increase icon size */
-  color: #FD3A00;
-  /* Default color for icons */
+  font-size: 160%; /* Increase icon size */
+  color: #eb0028; /* Default color for icons */
   display: block;
   margin: 0 auto;
 }
@@ -1808,4 +1804,30 @@ p {
   .event-details p {
     font-size: 16px;
   }
+}
+
+.maps {
+  width: 170px;
+  height: 100vh;
+  display: flex;
+  margin: auto;
+  display: flex;
+  justify-content: center; /* Centers the iframe horizontally */
+  align-items: center; /* Centers the iframe vertically (if needed) */
+  
+}
+
+.ted-button {
+  background-color: #eb0028; /* Initial background color */
+  color: white; /* Initial text color */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.ted-button:hover {
+  background-color: white; /* Change background to white on hover */
+  color: black; /* Change text color to black on hover */
 }

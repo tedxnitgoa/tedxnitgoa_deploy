@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import AudienceStats from './AudienceStats'; 
 
@@ -65,7 +66,7 @@ const SponsorWheel = () => {
         >
           <circle cx="200" cy="200" r="80" fill="white" />
           <text x="200" y="185" textAnchor="middle" className="font-bold text-lg" fill="black">Why Sponsor</text>
-          <text x="200" y="210" textAnchor="middle" className="font-bold text-lg" fill="rgb(255, 45, 45)">TEDxNITGoa</text>
+          <text x="200" y="210" textAnchor="middle" className="font-bold text-lg" fill="rgb(255, 45, 45)">TEDxNIT Goa</text>
           <text x="200" y="235" textAnchor="middle" className="font-bold text-lg" fill="black">?</text>
 
           {sections.map((section, index) => {
@@ -160,6 +161,139 @@ const SponsorWheel = () => {
   );
 };
 
+// Our sponsors
+const EventsSection = () => {
+  const events = [
+    {
+      title: 'Mall de Goa',
+      description: 'One of the Goa largest mall consists of varieties of brands and amusements activites for the customers.',
+      imageUrl: '/malldegoa.jpg' // Replace with actual image path
+    },
+    {
+      title: 'Chatrapati',
+      description: 'Goa based one of largest chain for snacks and indian cuisine.Attracts the vegetarian customers.',
+      imageUrl: '/chatrapati223.jpg' // Replace with actual image path
+    }
+  ];
+
+  return (
+    <section style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'column',
+      padding: '3rem 0',
+      backgroundColor: '#000000'
+    }}>
+      <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: 'white' }}>Our Sponsors</h2>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        flexWrap: 'wrap',
+      }}>
+        {events.map((event, index) => (
+          <Card key={index} {...event} />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+const Card = ({ title, description, date, imageUrl }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    });
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <div ref={cardRef} style={{
+      opacity: isVisible ? 1 : 0,
+      transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+      transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+      background: '#313236',
+      borderRadius: '10px',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+      margin: '1rem',
+      width : '300px',
+      minHeight: '400px',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection:'column',
+      justifyContent:'center',
+    }}>
+      <img src={imageUrl} alt={title} style={{
+        width: '100%',
+        height: '150px',
+        objectFit: 'cover',
+      }} />
+      <h3 style={{ color: 'red', margin: '2rem 0',paddingLeft:'20px'}}>{title}</h3>
+      <p style={{ padding: '0 1rem', color: '#fff' }}>{description}</p>
+      <p style={{ margin: '0.5rem 0', color: '#666' }}>{date}</p>
+    </div>
+  );
+};
+
+const EventReachSection = () => {
+  return (
+    <section style={{ backgroundColor: '#2A2B2F', padding: '3rem 0', textAlign: 'center' }}>
+      <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color:'#fff'}}>Event Reach and Impact</h2>
+      <p style={{ width: '60%', margin: '0 auto', marginBottom: '3rem', color: '#b8b8b8' }}>
+        TEDxNITGoa offers access to a dynamic audience building 
+      </p>
+      
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, 1fr)',
+        gap: '2rem',
+        maxWidth: '1000px',
+        margin: '0 auto'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <img src="/attendance.png" alt="Attendees" style={{ height: '60px' }} />
+          <h3 style={{ fontSize: '1.5rem', marginTop: '1rem',color:'#eeeeee' }}>Attendees</h3>
+          <p style={{ color: '#b8b8b8', marginTop: '0.5rem' }}>Over 1000+ students from NIT Goa and across India</p>
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <img src="/crowd-of-users (1).png" alt="Social Reach" style={{ height: '60px' }} />
+          <h3 style={{ fontSize: '1.5rem', marginTop: '1rem',color:'#eeeeee' }}>Social Groups</h3>
+          <p style={{ color: '#b8b8b8', marginTop: '0.5rem' }}>Students,Faculty,Entreprenuers and Industry Professionals</p>
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <img src="youtube.png" alt="YouTube Views" style={{ height: '60px' }} />
+          <h3 style={{ fontSize: '1.5rem', marginTop: '1rem',color:'#eeeeee' }}>Live Stream</h3>
+          <p style={{ color: '#b8b8b8', marginTop: '0.5rem' }}>Livestreaming benefits with real-time engagement</p>
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <img src="/instagram.png" alt="Impressions" style={{ height: '60px' }} />
+          <h3 style={{ fontSize: '1.5rem', marginTop: '1rem',color:'#eeeeee' }}>Social Media</h3>
+          <p style={{ color: '#b8b8b8', marginTop: '0.5rem' }}>Access to social media platforms</p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Sponsors = () => {
   return (
     <div className="sponsors">
@@ -181,7 +315,7 @@ const Sponsors = () => {
             Join TEDxNITGoa as a sponsor to support innovation and engage with some of the brightest minds in the country. NIT Goa, a top technical institute, offers unparalleled brand visibility and a chance to connect with future leaders, engineers, and entrepreneurs shaping the future.
           </span>
         </p>
-        <a className="partners_button__nkcDD" href="#">
+        <a className="partners_button__nkcDD" href="https://forms.gle/Py4gC3igyZgdD7HU7">
           <span>Sponsor TEDxNIT Goa</span>
         </a>
       </section>
@@ -195,13 +329,18 @@ const Sponsors = () => {
         padding: '2rem 0'
       }}>
         <SponsorWheel />
+        
       </section>
-      <AudienceStats />
-      <section style={{background: 'url("/image.png") center center / cover no-repeat'}}>
-        {/* ... (rest of the existing code remains the same) */}
-      </section>
+   
+      {/* Add the Event Reach section here */}
+      <EventReachSection />
+      {/* Add the new EventsSection */}
+      <EventsSection />
+      
+     
     </div>
-  );
+  )
+    
 };
 
 export default Sponsors;

@@ -9,7 +9,7 @@ import { faHandshake, faPeopleGroup, faBullhorn } from '@fortawesome/free-solid-
 const TedInfoPage = () => {
   return (
     <div className="ted-info-page">
-      <h1 className="ted-title" style={{color: '#eb0028'}}>ABOUT TEDx</h1>
+      <h1 className="ted-title" style={{ color: '#eb0028' }}>ABOUT TEDx</h1>
 
       <div className="ted-content">
         <div className="ted-text">
@@ -25,9 +25,12 @@ const TedInfoPage = () => {
             organized.
           </p>
 
-          <button className="ted-button">
-            Explore TEDx
-          </button>
+          <a href="https://www.ted.com/" target="_blank" rel="noopener noreferrer">
+            <button className="ted-button">
+              Explore TEDx
+            </button>
+          </a>
+
         </div>
 
         <div className="ted-image-container">
@@ -35,7 +38,7 @@ const TedInfoPage = () => {
         </div>
       </div>
 
-      <h2 className="tedx-title" style={{color: '#eb0028'}}> About NIT Goa</h2>
+      <h2 className="tedx-title" style={{ color: '#eb0028' }}> About NIT Goa</h2>
 
       <div className="tedx-content">
         <div className="tedx-image-container">

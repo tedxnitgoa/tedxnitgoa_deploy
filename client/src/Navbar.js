@@ -38,7 +38,7 @@ const Navbar = () => {
     return (
         <div className="navbar_nav">
             <div className="navbar_left">
-                <a href="/"><img src="/tedXnitgoa_logo.png" alt="" className="navbar_logo1__mHDkT" /></a>
+                <a href="/"><img src="/logonitg122.png" alt="" className="navbar_logo1__mHDkT" /></a>
             </div>
             {isMobile ? (
                 <div className="innerok">
@@ -46,7 +46,7 @@ const Navbar = () => {
                         {!showContent && (
                             <button className="navbar_toggle__1Pu10">
                                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512"
-                                    className="navbar_ll__nKuuS" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    className="navbar_ll__nKuuS" height="110em" width="110em" xmlns="http://www.w3.org/2000/svg">
                                     <path fill="none" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="48"
                                         d="M88 152h336M88 256h336M88 360h336"></path>
                                 </svg>

@@ -36,6 +36,8 @@ const teamData = [
             { name: 'Vishal Pratap', role: 'Tech Team', image: '/TeamFolder/vishal-pratap.jpeg', linkedin: 'https://www.linkedin.com/in/vishal-pratap-b85a17255', github: 'https://github.com/Vishi-77', email: 'vishalpratap2468@gmail.com' },
             { name: 'Aryan N. Perli', role: 'Tech Team', image: '/TeamFolder/aryan-perli.jpeg', linkedin: 'https://in.linkedin.com/in/aryan-nageswararao-perli-b2045224a', github: 'https://github.com/perliaryan', email: 'perliaryannageswararao@gmail.com' },
             { name: 'Vedant Ghadi', role: 'Graphic Designer', image: '/TeamFolder/vedant-ghadi.jpg', linkedin: 'http://linkedin.com/in/vedant-ghadi-6aa47415b', github: 'http://github.com/vedvery5', email: 'vedantghadi02@gmail.com' },
+            { name: 'shravani pawar', role: 'Tech Team', image: '/TeamFolder/shrawani.jpg', linkedin: 'https://www.linkedin.com/in/shravani-pawar-304435293/', github: 'https://github.com/shravani1712', email: 'pawarshravani306@gmail.com ' },
+            { name: 'sagar shirgaonkar', role: 'Tech Team', image: '/TeamFolder/sagardp.jpg', linkedin: 'https://www.linkedin.com/in/sagar-shirgaonkar-ba0859270/', github: 'https://github.com/Sagar-1103', email: 'sagarshirgaonkar59511@gmail.com ' },
             // Add more members
         ]
     }
