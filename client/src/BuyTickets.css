@@ -1,11 +1,11 @@
-.buy-tickets-container {
+/* .buy-tickets-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f8f8f8;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .buy-tickets-title {
   text-align: center;
@@ -133,3 +133,52 @@
   margin-bottom: 20px;
   color: #090909;
 }
+
+
+
+/* Add these new styles at the top of your existing CSS file */
+.warning-banner {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ff4d4d;
+  color: white;
+  padding: 15px 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.warning-content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+}
+
+.warning-icon {
+  font-size: 24px;
+}
+
+.warning-text {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Your existing CSS remains the same */
+.buy-tickets-container {
+  max-width: 600px;
+  margin: 20px auto; /* Added top margin to separate from warning banner */
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Rest of your existing CSS */

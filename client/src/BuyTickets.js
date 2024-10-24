@@ -17,6 +17,7 @@ const BuyTickets = () => {
   const [dialogMessage, setDialogMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [pdfUrl, setPdfUrl] = useState(null);
+  const [verifyingPayment, setVerifyingPayment] = useState(false);
 
   useEffect(() => {
     fetchAvailableTickets();
@@ -73,6 +74,7 @@ const BuyTickets = () => {
         description: 'Ticket Purchase',
         order_id: orderId,
         handler: async function (response) {
+          setVerifyingPayment(true);
           try {
             const verifyResponse = await fetch(`${API_BASE_URL}/api/verify-payment`, {
               method: 'POST',
@@ -135,11 +137,13 @@ const BuyTickets = () => {
       setError(error.message || 'An error occurred. Please try again.');
     } finally {
       setLoading(false);
+      setVerifyingPayment(false);
     }
   };
 
   const handleCloseDialog = () => {
     setDialogOpen(false);
+    setVerifyingPayment(false);
     setPdfUrl(null);
     setTicketData({
       name: '',
@@ -151,14 +155,26 @@ const BuyTickets = () => {
   };
 
   const handleDownloadTicket = () => {
-    console.log("dasf",pdfUrl);
-    
     if (pdfUrl) {
       console.log(`Downloading ticket from: ${pdfUrl}`);
-      window.open(pdfUrl, '_blank');
+  
+      // Create an anchor element
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+      link.setAttribute('download', 'ticket.pdf'); // Set the download attribute to suggest the filename
+  
+      // Append the link to the body (required for some browsers)
+      document.body.appendChild(link);
+  
+      // Programmatically click the link to trigger the download
+      link.click();
+  
+      // Remove the link after triggering the download
+      document.body.removeChild(link);
     } else {
       console.error("PDF URL is not available");
     }
+    setVerifyingPayment(false);
   };
   
   if (availableTickets === 0) {
@@ -171,6 +187,18 @@ const BuyTickets = () => {
   }
 
   return (
+    
+    <>
+    <div className="warning-banner">
+      <div className="warning-content">
+        <span className="warning-icon">⚠️</span>
+        <p className="warning-text">
+          WARNING: PLEASE DO NOT PAY USING UPI QR CODE AS IT IS NOT WORKING.
+          USE UPI ID OR ANY OTHER FORMS OF PAYMENT
+        </p>
+      </div>
+    </div>
+
     <div className="buy-tickets-container">
       <h1 className="buy-tickets-title">Buy Tickets for TEDxNIT Goa</h1>
       <p className="tickets-available">Tickets available: {availableTickets}</p>
@@ -245,6 +273,13 @@ const BuyTickets = () => {
           {loading ? 'Processing...' : 'Proceed to Payment'}
         </button>
       </form>
+      {verifyingPayment && ( // Loader dialog when payment is verifying
+        <div className="dialog-overlay">
+          <div className="dialog">
+            <p>Verifying your payment, please wait...</p>
+          </div>
+        </div>
+      )}
       {dialogOpen && (
         <div className="dialog-overlay">
           <div className="dialog">
@@ -257,6 +292,7 @@ const BuyTickets = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
