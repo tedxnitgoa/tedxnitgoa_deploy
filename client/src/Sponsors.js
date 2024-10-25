@@ -145,12 +145,12 @@ const EventsSection = () => {
   const events = [
     {
       title: 'Mall de Goa',
-      description: 'One of the Goa largest mall consists of varieties of brands and amusements activites for the customers.',
+      description: 'One of the largest malls in Goa, featuring a variety of brands and amusement activities for customers',
       imageUrl: '/malldegoa.jpg' // Replace with actual image path
     },
     {
       title: 'Chatrapati',
-      description: 'Goa based one of largest chain for snacks and indian cuisine.Attracts the vegetarian customers.',
+      description: 'One of the largest Goa-based chains for snacks and Indian cuisine, attracting vegetarian customers.',
       imageUrl: '/chatrapati223.jpg' // Replace with actual image path
     }
   ];
