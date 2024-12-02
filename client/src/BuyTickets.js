@@ -251,8 +251,8 @@ const BuyTickets = () => {
             className="form-select"
           >
             <option value="general">General</option>
-            {/* <option value="vip">VIP</option>
-            <option value="student">Student</option> */}
+            <option value="vip">VIP</option>
+            {/* <option value="student">Student</option> */}
           </select>
         </div>
         <div className="form-group">
