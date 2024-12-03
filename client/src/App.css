@@ -1729,20 +1729,39 @@ p {
   object-position: center;
 }
 
-.event-banner {   
-  position: absolute;   
-  bottom: 40px;   
-  left: 40px;   
-  display: flex;   
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-video {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.event-banner {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: calc(100% - 80px);
   transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
   opacity: 0;
   transform: translateY(100%);
-  background-color: rgba(0, 0, 0, 0.7);   
-  padding: 15px;  /* Reduced from 30px */
-  border-radius: 15px;   
-  max-width: 450px;  /* Reduced from 500px */
-  width: calc(100% - 80px); 
 }
+
 .event-banner.banner-visible {
   opacity: 1;
   transform: translateY(0);
@@ -1759,7 +1778,6 @@ p {
 }
 
 .serendipity-logo {
-  vertical-align: middle;
   width: 100%;
   height: auto;
 }
@@ -1795,30 +1813,36 @@ p {
   font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
 }
 
-@media (max-width: 768px) {
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .hero-container {
+    height: auto;
+    padding-top: 56.25%;
+    justify-content: flex-end;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .event-banner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin: 20px;
   }
-  @media screen and (max-width: 480px) {
-    .serendipity-logo {
-        max-width: 85%;
-    }
-  
-    .event-details h2 {
-        font-size: 1.2rem;
-    }
-  
-    .event-details p {
-        font-size: 0.9rem;
-    }
-  }
+
   .event-logo {
-    margin-right: 0;
-    margin-bottom: 20px;
+    flex: 0 0 250px;
+    margin-right: 20px;
   }
 
   .event-details h2 {
@@ -1830,6 +1854,28 @@ p {
   }
 }
 
+@media screen and (max-width: 480px) {
+  .event-banner {
+    padding: 15px;
+  }
+
+  .serendipity-logo {
+    max-width: 85%;
+  }
+
+  .event-details h2 {
+    font-size: 1.2rem;
+  }
+
+  .event-details p {
+    font-size: 0.9rem;
+  }
+
+  .buy-tickets-btn {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+}
 .maps {
   width: 170px;
   height: 100vh;

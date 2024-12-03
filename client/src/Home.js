@@ -69,7 +69,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="hero-image-container">
+      <div className="hero-container">
         <video 
           ref={videoRef}
           src="/WEBSITTTTTTTTT.mp4" 
