@@ -8,9 +8,9 @@ const teamData = [
     {
         title: 'Organizers',
         members: [
-            { name: 'Navodith Sheth', role: 'Organizer', image: '/TeamFolder/navodith.jpeg', linkedin: 'https://www.linkedin.com/in/navodith-sheth-a7aa592a6', instagram: '#', email: '23ece1023@nitgoa.ac.in' },
-            { name: 'Aditya Madkaikar', role: 'Organizer', image: '/TeamFolder/aditya.jpeg', linkedin: 'https://www.linkedin.com/in/aditya-madkaikar-833373280', instagram: '#', email: '23cse1003@nitgoa.ac.in' },
-            { name: 'Mahek Bhandari', role: 'Organizer', image: '/TeamFolder/mahek-bhandari.jpeg', linkedin: 'https://www.linkedin.com/in/mahek-bhandari-abb2102b4', instagram: '#', email: '23eee1010@nitgoa.ac.in' },
+            { name: 'Prabhat Kumar', role: 'Organizer', image: '/TeamFolder/prabhatted.jpg', linkedin: 'https://www.linkedin.com/in/prabhat-kumar-5540751b8/', instagram: '#', email: 'prabhat01kumar01@nitgoa.ac.in' },
+            { name: 'Rounak Soni', role: 'Organizer & Culinary Lead', image: '/TeamFolder/raunak-soni.JPG', linkedin: 'https://www.linkedin.com/in/rounak-soni-9a9203229', instagram: '#', email: 'rounaksoni23@gmail.com'},
+            { name: 'Nivedita Kashyap', role: 'Organizer & Communication Lead', image: '/TeamFolder/nivedita-kashyap.jpeg', linkedin: 'https://www.linkedin.com/in/nivedita-kashyap', email: 'kashyapnivedita310302@nitgoa.ac.in' },
             // Add more members
         ]
     },

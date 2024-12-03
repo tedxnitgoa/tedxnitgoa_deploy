@@ -1729,16 +1729,28 @@ p {
   object-position: center;
 }
 
-.event-banner {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  display: flex;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 800px;
-  width: calc(100% - 80px);
+.event-banner {   
+  position: absolute;   
+  bottom: 40px;   
+  left: 40px;   
+  display: flex;   
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  opacity: 0;
+  transform: translateY(100%);
+  background-color: rgba(0, 0, 0, 0.7);   
+  padding: 15px;  /* Reduced from 30px */
+  border-radius: 15px;   
+  max-width: 450px;  /* Reduced from 500px */
+  width: calc(100% - 80px); 
+}
+.event-banner.banner-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.event-banner.banner-hidden {
+  opacity: 0;
+  transform: translateY(100%);
 }
 
 .event-logo {
@@ -1777,10 +1789,10 @@ p {
   background-color: #e62b1e;
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
 }

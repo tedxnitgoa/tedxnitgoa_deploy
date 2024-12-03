@@ -1,10 +1,8 @@
-
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './TedInfoPage.css'; // Make sure to create this CSS file and import it
+import './TedInfoPage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandshake, faPeopleGroup, faBullhorn } from '@fortawesome/free-solid-svg-icons';
-
 
 const TedInfoPage = () => {
   return (
@@ -34,7 +32,7 @@ const TedInfoPage = () => {
         </div>
 
         <div className="ted-image-container">
-          <img src="/abtnit331.jpg" alt="TED Conference" className="ted-image" />
+          <img src="/trial269.png" alt="TED Conference" className="ted-image" />
         </div>
       </div>
 
@@ -47,7 +45,7 @@ const TedInfoPage = () => {
 
         <div className="tedx-text">
           <p>
-            NIT Goa, a premier technical institute nestled in the serene forests of South Goa, continues to grow with its new permanent campus in Cuncolim. Ranked among the top 150 technical institutions in India by NIRF, NIT Goa fosters innovation and creativity. As we settle into our state-of-the-art campus, we are excited to host this year’s TEDxNIT GOA, marking the beginning of an inspiring new chapter.
+            NIT Goa, a premier technical institute nestled in the serene forests of South Goa, continues to grow with its new permanent campus in Cuncolim. Ranked among the top 150 technical institutions in India by NIRF, NIT Goa fosters innovation and creativity. As we settle into our state-of-the-art campus, we are excited to host this year's TEDxNIT GOA, marking the beginning of an inspiring new chapter.
 
           </p>
         </div>
@@ -56,19 +54,36 @@ const TedInfoPage = () => {
   );
 };
 
-
 const Home = () => {
+  const [videoEnded, setVideoEnded] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
+  const videoRef = useRef(null);
+
+  const handleVideoEnd = () => {
+    setVideoEnded(true);
+    // Add a short delay before showing the banner for a smoother transition
+    setTimeout(() => {
+      setShowBanner(true);
+    }, 500);
+  };
+
   return (
     <>
       <div className="hero-image-container">
-        <img src="/trial3.jpg" alt="TEDx NIT Goa Hero Image" className="hero-image" />
-        <div className="event-banner">
-          <div className="event-logo">
-            <img src="/nextkagif-ezgif.com-optimize.gif" alt="Serendipity" className="serendipity-logo" />
-          </div>
+        <video 
+          ref={videoRef}
+          src="/WEBSITTTTTTTTT.mp4" 
+          alt="TEDx NIT Goa Hero Video" 
+          className="hero-image" 
+          autoPlay 
+          muted 
+          playsInline
+          onEnded={handleVideoEnd}
+        />
+        <div className={`event-banner ${showBanner ? 'banner-visible' : 'banner-hidden'}`}>
           <div className="event-details">
-            <h2>26th October 2024</h2>
-            <p>3 pm - 6 pm</p>
+            <h2>8th January 2024</h2>
+            <p>9 am - 6 pm</p>
             <p>Goa, India</p>
             <p>Discover the magic of unexpected connections, and explore the power of ideas unfolding into life's little miracles!</p>
             <Link to="/BuyTickets" className="buy-tickets-btn">BUY TICKETS</Link>
@@ -83,7 +98,6 @@ const Home = () => {
         <div className="card">
           <div className="box">
             <div className="content">
-              {/* Replace "01" with handshake icon */}
               <h2>
                 <FontAwesomeIcon icon={faHandshake} className="icon" />
               </h2>
@@ -96,7 +110,6 @@ const Home = () => {
         <div className="card">
           <div className="box">
             <div className="content">
-              {/* Replace "02" with people group icon */}
               <h2>
                 <FontAwesomeIcon icon={faBullhorn} className="icon" />
               </h2>
@@ -109,7 +122,6 @@ const Home = () => {
         <div className="card">
           <div className="box">
             <div className="content">
-              {/* Replace "03" with bullhorn icon */}
               <h2>
                 <FontAwesomeIcon icon={faPeopleGroup} className="icon" />
               </h2>
@@ -119,7 +131,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
     </>
   );
 }
