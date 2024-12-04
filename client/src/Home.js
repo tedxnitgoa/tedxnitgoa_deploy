@@ -82,7 +82,7 @@ const Home = () => {
         />
         <div className={`event-banner ${showBanner ? 'banner-visible' : 'banner-hidden'}`}>
           <div className="event-details">
-            <h2>8th January 2024</h2>
+            <h2>18th January 2024</h2>
             <p>9 am - 6 pm</p>
             <p>Goa, India</p>
             <p>Discover the magic of unexpected connections, and explore the power of ideas unfolding into life's little miracles!</p>
