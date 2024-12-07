@@ -78,7 +78,7 @@ const validateOrderInput = [
   body('email').isEmail().normalizeEmail(),
   body('phone').isMobilePhone(),
   body('ticketType').isIn(['general', 'vip', 'student']),
-  body('quantity').isInt({ min: 1, max: 100 })
+  body('quantity').isInt({ min: 1, max: 30 })
 ];
 
 // Routes
