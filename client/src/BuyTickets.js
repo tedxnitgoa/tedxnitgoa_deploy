@@ -201,7 +201,7 @@ const BuyTickets = () => {
 
     <div className="buy-tickets-container">
       <h1 className="buy-tickets-title">Buy Tickets for TEDxNIT Goa</h1>
-      <p className="tickets-available">Tickets available: {availableTickets}</p>
+      <p className="tickets-available">Early Bird Offer Tickets: {availableTickets}</p>
       <p className="IMP-Note">Note: please wait for pdf after the payment</p>
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit} className="buy-tickets-form">
