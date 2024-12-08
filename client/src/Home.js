@@ -6,7 +6,9 @@ import { faHandshake, faPeopleGroup, faBullhorn } from '@fortawesome/free-solid-
 
 const TedInfoPage = () => {
   return (
+    
     <div className="ted-info-page">
+      
       <h1 className="ted-title" style={{ color: '#eb0028' }}>ABOUT TEDx</h1>
 
       <div className="ted-content">
@@ -82,7 +84,7 @@ const Home = () => {
         />
         <div className={`event-banner ${showBanner ? 'banner-visible' : 'banner-hidden'}`}>
           <div className="event-details">
-            <h2>18th January 2024</h2>
+            <h2>18th January 2025</h2>
             <p>9 am - 6 pm</p>
             <p>Goa, India</p>
             <p>Discover the magic of unexpected connections, and explore the power of ideas unfolding into life's little miracles!Lunch and goodies will be provided!!</p>

@@ -2147,3 +2147,63 @@ p {
     margin: 1.5rem 0;
   }
 }
+
+\\pass
+
+.student-pass-section {
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+ .student-pass-card {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 24px;
+  color: #e63946;
+
+  margin: 0;
+}
+
+.price-note {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features li {
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.included {
+  color: #2a9d8f;
+}
+
+.not-included {
+  color: #e76f51;
+}

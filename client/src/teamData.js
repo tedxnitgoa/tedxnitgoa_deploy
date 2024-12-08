@@ -2,7 +2,7 @@ const teamData = [
     {
         title: 'License Holder',
         members: [
-            { name: 'Nisarg Shah', role: 'License & Marketing Lead', image: 'TeamFolder/licensee.jpeg', linkedin: 'https://www.linkedin.com/in/nsshah2003', instagram: '#', email: '#' },
+            { name: 'Nisarg Shah', role: 'License & Curator', image: 'TeamFolder/licensee.jpeg', linkedin: 'https://www.linkedin.com/in/nsshah2003', instagram: '#', email: '#' },
         ]
     },
     {
@@ -20,11 +20,12 @@ const teamData = [
             { name: 'Paras Kore', role: 'Hospitality Lead', image: '/TeamFolder/paras-kore.jpeg', linkedin: 'https://www.linkedin.com/in/paras-kore-450b9a27b', instagram: '#', email: 'Prskore@nitgoa.ac.in' },
             { name: 'Kanak Gohil', role: 'Content Lead', image: '/TeamFolder/kanak-gohil.jpeg', linkedin: 'http://www.linkedin.com/in/kanak-gohil-81916a242', instagram: '#', email: 'emailto:kanakgohil2002@nitgoa.ac.in' },
             { name: 'Nivedita Kashyap', role: 'Communication Lead', image: '/TeamFolder/nivedita-kashyap.jpeg', linkedin: 'https://www.linkedin.com/in/nivedita-kashyap', email: 'kashyapnivedita310302@nitgoa.ac.in' },
-            { name: 'Raghav Shastri', role: 'Operations Lead', image: '/TeamFolder/raghav-shastri.jpg', linkedin: 'https://www.linkedin.com/in/raghav-shastri-b53111230', instagram: '#', email: 'raghavshastri1604@nitgoa.ac.in' },
-            { name: 'Jeednya Sade', role: 'Design Lead', image: '/TeamFolder/jeednya-sade.jpeg', linkedin: 'https://www.linkedin.com/in/jeednya-bhaskar-sade-98a48922a', github: 'https://github.com/JBS20', email: 'sadejeednya@gmail.com' },
+            { name: 'Aashvi Patel', role: 'Design Lead', image: '/TeamFolder/aashvipatel.jpg', linkedin: 'https://www.linkedin.com/in/aashvi-patel-457a922bb?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', instagram: '#', email: 'aashvipatelwork@gmail.com' },
             { name: 'Krish Vaghela', role: 'Tech Lead', image: '/TeamFolder/krish-vaghela.jpg', linkedin: 'https://www.linkedin.com/in/krish-vaghela-73022429a', github: 'https://github.com/KrishVaghela', email: '11a11165krish2019@gmail.com' },
             { name: 'Rounak Soni', role: 'Culinary Lead', image: '/TeamFolder/raunak-soni.JPG', linkedin: 'https://www.linkedin.com/in/rounak-soni-9a9203229', instagram: '#', email: 'rounaksoni23@gmail.com' },
-            { name: 'Mahek Bhandari', role: 'Planning Lead', image: '/TeamFolder/mahek-bhandari.jpeg', linkedin: '#', instagram: '#', email: '23eee1010@nitgoa.ac.in' },
+            { name: 'Mahek Bhandari', role: 'Decoration Lead', image: '/TeamFolder/mahek-bhandari.jpeg', linkedin: '#', instagram: '#', email: '23eee1010@nitgoa.ac.in' },
+            { name: 'Leander Vaz', role: 'Finance Lead', image: '/TeamFolder/leander.jpg', linkedin: 'https://www.linkedin.com/in/leandervaz/', instagram: '#', email: 'leandervaz2003@nitgoa.ac.in' },
+            { name: 'Rudresh Naik', role: 'Media Lead', image: '/TeamFolder/rudresh.jpg', linkedin: 'https://www.linkedin.com/in/rudresh-rajesh-naik-757216242?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', instagram: '#', email: 'naikrudreshr@nitgoa.ac.in' },
             // Add more members
         ]
     },
