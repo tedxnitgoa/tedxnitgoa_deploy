@@ -18,7 +18,7 @@ const generateTicketPDF = async (paymentData) => {
     ticketType,
     quantity,
     eventName: 'TEDxNITGOA',
-    eventDate: '2024-11-15',
+    eventDate: '2025-01-18',
     orderId,
     paymentId
   });
