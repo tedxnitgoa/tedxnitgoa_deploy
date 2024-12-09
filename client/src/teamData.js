@@ -26,6 +26,7 @@ const teamData = [
             { name: 'Mahek Bhandari', role: 'Decoration Lead', image: '/TeamFolder/mahek-bhandari.jpeg', linkedin: '#', instagram: '#', email: '23eee1010@nitgoa.ac.in' },
             { name: 'Leander Vaz', role: 'Finance Lead', image: '/TeamFolder/leander.jpg', linkedin: 'https://www.linkedin.com/in/leandervaz/', instagram: '#', email: 'leandervaz2003@nitgoa.ac.in' },
             { name: 'Rudresh Naik', role: 'Media Lead', image: '/TeamFolder/rudresh.jpg', linkedin: 'https://www.linkedin.com/in/rudresh-rajesh-naik-757216242?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', instagram: '#', email: 'naikrudreshr@nitgoa.ac.in' },
+            { name: 'Navodith', role: 'marketing Lead', image: '/TeamFolder/navodith.jpeg', linkedin: '#', instagram: '#', email: '#' },
             // Add more members
         ]
     },
