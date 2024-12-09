@@ -1748,19 +1748,26 @@ p {
 
 /* Event Banner */
 .event-banner {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  display: flex;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute; /* Position the banner on top of the image */
+  bottom: 20px; /* Adjust placement as needed */
+  left: 20px; /* Adjust placement as needed */
+  z-index: 2; /* Layering order: Keep it above the image */
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for readability */
+  color: white;
   padding: 20px;
-  border-radius: 15px;
-  max-width: 500px;
-  width: calc(100% - 80px);
-  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-  opacity: 0;
-  transform: translateY(100%);
+  border-radius: 8px;
+  max-width: 400px;
+  width: calc(100% - 40px); /* Ensure responsiveness */
+  text-align: left;
+}
+.event-banner h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.event-banner p {
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .event-banner.banner-visible {
@@ -1862,6 +1869,14 @@ p {
     padding: 8px 15px;
     font-size: 0.8rem;
   }
+  .event-banner h2 {
+    font-size: 18px;
+  }
+
+  .event-banner p {
+    font-size: 12px;
+  }
+
 }
 .maps {
   width: 170px;
@@ -2194,21 +2209,44 @@ p {
 }
 
 \\fallback-image-css
+.fallback-image-container {
+  position: relative; /* Enable positioning for the banner */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full screen height */
+  width: 100vw; /* Full screen width */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars */
+}
+
 .fallback-image {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
+  position: absolute; /* Ensure the image stays behind the banner */
+  top: 0;
+  left: 0;
+  width: 100%; /* Cover the width of the screen */
+  height: 90%; /* Cover the height of the screen */
+  object-fit: cover; /* Ensures the image fills the screen without distortion */
+  z-index: 1; /* Layering order: Keep it behind the banner */
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .fallback-image {
+    max-width: 600px; /* Adjust for smaller laptop screens */
+  }
 }
 
 @media (max-width: 768px) {
   .fallback-image {
-    max-width: 80%;
+    max-width: 80%; /* Adjust for tablets */
   }
 }
 
 @media (max-width: 480px) {
   .fallback-image {
-    max-width: 100%;
+    max-width: 100%; /* Adjust for mobile */
   }
 }
