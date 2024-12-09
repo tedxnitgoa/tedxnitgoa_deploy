@@ -2150,16 +2150,14 @@ p {
 
 \\pass
 
-.student-pass-section {
-  margin: 40px auto;
+.buy-tickets-section {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 20px;
+  margin: 20px;
 }
 
-
  .student-pass-card {
-  width: 300px;
+  width: 90%;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -2207,3 +2205,4 @@ p {
 .not-included {
   color: #e76f51;
 }
+

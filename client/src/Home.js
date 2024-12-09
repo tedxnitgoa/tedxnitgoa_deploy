@@ -59,6 +59,7 @@ const TedInfoPage = () => {
 const Home = () => {
   const [videoEnded, setVideoEnded] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const videoRef = useRef(null);
 
   const handleVideoEnd = () => {
@@ -69,28 +70,54 @@ const Home = () => {
     }, 500);
   };
 
+  const handleVideoError = () => {
+    setVideoError(true);
+  };
+
   return (
     <>
       <div className="hero-container">
-        <video 
-          ref={videoRef}
-          src="/WEBSITTTTTTTTT.mp4" 
-          alt="TEDx NIT Goa Hero Video" 
-          className="hero-image" 
-          autoPlay 
-          muted 
-          playsInline
-          onEnded={handleVideoEnd}
-        />
-        <div className={`event-banner ${showBanner ? 'banner-visible' : 'banner-hidden'}`}>
-          <div className="event-details">
-            <h2>18th January 2025</h2>
-            <p>9 am - 6 pm</p>
-            <p>Goa, India</p>
-            <p>Discover the magic of unexpected connections, and explore the power of ideas unfolding into life's little miracles!Lunch and goodies will be provided!!</p>
-            <Link to="/BuyTickets" className="buy-tickets-btn">BUY TICKETS</Link>
+        {videoError ? (
+          <div className="fallback-image-container">
+            <img 
+              src="/trial3.jpg" 
+              alt="TEDx NIT Goa" 
+              className="fallback-image" 
+            />
+            <div className="event-banner">
+              <div className="event-details">
+                <h2>18th January 2025</h2>
+                <p>9 am - 6 pm</p>
+                <p>Goa, India</p>
+                <p>Discover the magic of unexpected connections, and explore the power of ideas unfolding into life's little miracles! Lunch and goodies will be provided!!</p>
+                <Link to="/BuyTickets" className="buy-tickets-btn">BUY TICKETS</Link>
+              </div>
+            </div>
           </div>
-        </div>
+        ) : (
+          <video
+            ref={videoRef}
+            src="/WEBSITTTTTTTTT.mp4"
+            alt="TEDx NIT Goa Hero Video"
+            className="hero-image"
+            autoPlay
+            muted
+            playsInline
+            onEnded={handleVideoEnd}
+            onError={handleVideoError}
+          />
+        )}
+        {showBanner && !videoError && (
+          <div className="event-banner banner-visible">
+            <div className="event-details">
+              <h2>18th January 2025</h2>
+              <p>9 am - 6 pm</p>
+              <p>Goa, India</p>
+              <p>Discover the magic of unexpected connections, and explore the power of ideas unfolding into life's little miracles! Lunch and goodies will be provided!!</p>
+              <Link to="/BuyTickets" className="buy-tickets-btn">BUY TICKETS</Link>
+            </div>
+          </div>
+        )}
       </div>
 
       <div>
@@ -103,7 +130,6 @@ const Home = () => {
               <h2>
                 <FontAwesomeIcon icon={faHandshake} className="icon" />
               </h2>
-              <h3></h3>
               <a href="https://forms.gle/Py4gC3igyZgdD7HU7">Partner with us</a>
             </div>
           </div>
@@ -115,7 +141,6 @@ const Home = () => {
               <h2>
                 <FontAwesomeIcon icon={faBullhorn} className="icon" />
               </h2>
-              <h3></h3>
               <a href="https://forms.gle/3PyKPMgCqeQydAeN9">Be a Speaker</a>
             </div>
           </div>
@@ -127,7 +152,6 @@ const Home = () => {
               <h2>
                 <FontAwesomeIcon icon={faPeopleGroup} className="icon" />
               </h2>
-              <h3></h3>
               <a href="#">Participate</a>
             </div>
           </div>
@@ -135,6 +159,6 @@ const Home = () => {
       </div>
     </>
   );
-}
+};
 
 export default Home;

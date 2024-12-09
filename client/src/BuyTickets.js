@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './BuyTickets.css';
+import StudentPass from './StudentPass';
+import VipPass from './VipPass'
 
 const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
@@ -200,6 +202,8 @@ const BuyTickets = () => {
     </div>
 
     <div className="buy-tickets-container">
+  {/* Left column: Ticket form */}
+  <div className="buy-tickets-form-container">
       <h1 className="buy-tickets-title">Buy Tickets for TEDxNIT Goa</h1>
       <p className="tickets-available">Early Bird Offer Tickets: {availableTickets}</p>
       <p className="IMP-Note">Note: please wait for pdf after the payment</p>
@@ -273,6 +277,12 @@ const BuyTickets = () => {
           {loading ? 'Processing...' : 'Proceed to Payment'}
         </button>
       </form>
+      </div>
+       {/* Right column: Card */}
+  <div className="buy-tickets-card-container">
+<StudentPass />
+<VipPass />
+  </div>
       {verifyingPayment && ( // Loader dialog when payment is verifying
         <div className="dialog-overlay">
           <div className="dialog">
@@ -292,6 +302,7 @@ const BuyTickets = () => {
         </div>
       )}
     </div>
+   
     </>
   );
 };

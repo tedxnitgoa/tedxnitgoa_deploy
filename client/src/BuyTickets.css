@@ -173,12 +173,76 @@
 
 /* Your existing CSS remains the same */
 .buy-tickets-container {
-  max-width: 600px;
-  margin: 20px auto; /* Added top margin to separate from warning banner */
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 20px;
   background-color: #f8f8f8;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap; /* Ensures columns wrap on smaller screens */
+  gap: 20px;
 }
 
-/* Rest of your existing CSS */
+.buy-tickets-form-container {
+  flex: 3;
+  min-width: 300px; /* Ensure the form doesn't shrink too much */
+}
+
+.buy-tickets-card-container {
+  flex: 1;
+  min-width: 300px; /* Ensure the card doesn't shrink too much */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+/* Add responsiveness for smaller screens */
+@media screen and (max-width: 768px) {
+  .buy-tickets-container {
+    flex-direction: column; /* Stack the form and card vertically */
+  }
+
+  .buy-tickets-form-container,
+  .buy-tickets-card-container {
+    flex: unset; /* Reset flex property for single-column layout */
+    min-width: unset;
+    width: 100%; /* Ensure both take full width */
+  }
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #e62b1e;
+}
+
+.card-content {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card-button {
+  background-color: #e62b1e;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #c62218;
+}
+@media screen and (max-width: 768px) {
+  .buy-tickets-form-container {
+    margin-bottom: 20px;
+  }
+}
