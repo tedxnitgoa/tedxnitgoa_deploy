@@ -31,8 +31,8 @@ router.post('/create-order', validateOrderInput, async (req, res) => {
 
   try {
     const ticketPrices = {
-      general: 735,
-      vip: 882,
+      general: 750,
+      vip: 900,
       student: 500
     };
     const amount = ticketPrices[ticketType] * quantity;
