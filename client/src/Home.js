@@ -6,11 +6,8 @@ import { faHandshake, faPeopleGroup, faBullhorn } from '@fortawesome/free-solid-
 
 const TedInfoPage = () => {
   return (
-    
     <div className="ted-info-page">
-      
       <h1 className="ted-title" style={{ color: '#eb0028' }}>ABOUT TEDx</h1>
-
       <div className="ted-content">
         <div className="ted-text">
           <p className="ted-paragraph">
@@ -21,34 +18,24 @@ const TedInfoPage = () => {
             connection in a small group. These local, self-organized
             events are branded TEDx, where x = independently organized
             TED event. The TED Conference provides general guidance for
-            the TEDx program, but individual TEDx events are self
-            organized.
+            the TEDx program, but individual TEDx events are self-organized.
           </p>
-
           <a href="https://www.ted.com/" target="_blank" rel="noopener noreferrer">
-            <button className="ted-button">
-              Explore TEDx
-            </button>
+            <button className="ted-button">Explore TEDx</button>
           </a>
-
         </div>
-
         <div className="ted-image-container">
           <img src="/trial269.png" alt="TED Conference" className="ted-image" />
         </div>
       </div>
-
-      <h2 className="tedx-title" style={{ color: '#eb0028' }}> About NIT Goa</h2>
-
+      <h2 className="tedx-title" style={{ color: '#eb0028' }}>About NIT Goa</h2>
       <div className="tedx-content">
-        <div className="">
+        <div>
           <img src="/abtnit77.jpg" alt="TEDx Event" className="ted-image" />
         </div>
-
         <div className="tedx-text">
           <p>
             NIT Goa, a premier technical institute nestled in the serene forests of South Goa, continues to grow with its new permanent campus in Cuncolim. Ranked among the top 150 technical institutions in India by NIRF, NIT Goa fosters innovation and creativity. As we settle into our state-of-the-art campus, we are excited to host this year's TEDxNIT GOA, marking the beginning of an inspiring new chapter.
-
           </p>
         </div>
       </div>
@@ -64,10 +51,9 @@ const Home = () => {
 
   const handleVideoEnd = () => {
     setVideoEnded(true);
-    // Add a short delay before showing the banner for a smoother transition
     setTimeout(() => {
       setShowBanner(true);
-    }, 500);
+    }, 500); // Smooth transition
   };
 
   const handleVideoError = () => {

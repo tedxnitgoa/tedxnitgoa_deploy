@@ -1746,6 +1746,7 @@ p {
   object-fit: cover;
 }
 
+/* Event Banner */
 .event-banner {
   position: absolute;
   bottom: 40px;
@@ -1819,20 +1820,6 @@ p {
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
-  .hero-container {
-    height: auto;
-    padding-top: 56.25%;
-    justify-content: flex-end;
-  }
-
-  .hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
   .event-banner {
     position: relative;
     bottom: auto;
@@ -2207,28 +2194,21 @@ p {
 }
 
 \\fallback-image-css
-.fallback-image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-}
-
 .fallback-image {
   max-width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 8px;
 }
+
 @media (max-width: 768px) {
   .fallback-image {
     max-width: 80%;
   }
 }
+
 @media (max-width: 480px) {
   .fallback-image {
     max-width: 100%;
-  }}
-  
+  }
+}
