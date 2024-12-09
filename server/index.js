@@ -110,8 +110,8 @@ app.post('/api/create-order', validateOrderInput, async (req, res) => {
 
   try {
     const ticketPrices = {
-      general: 1,
-      vip: 918,
+      general: 750,
+      vip: 900,
       student: 500
     };
     const amount = ticketPrices[ticketType] * quantity;
