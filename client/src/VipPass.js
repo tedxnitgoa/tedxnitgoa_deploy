@@ -5,7 +5,7 @@ const StudentPassvip = () => {
   return (
     <div className="student-pass-card">
       <h2 className="title">VIP Pass</h2>
-      <p className="price">₹ 900</p>
+      <p className="price">₹ 949</p>
       <p className="price-note"></p>
 
       <ul className="features">
