@@ -62,6 +62,7 @@ const Navbar = () => {
                             <div className="navbar_sidehead__HVrOC">
                                 <div className="navbar_head__Un2yU">
                                     <a className="navbar_lin1__bGONE" href="/">HOME</a>
+                                    <a className="navbar_lin1__bGONE" href="/speaker">SPEAKERS</a>
                                     <a className="navbar_lin1__bGONE" href="/Teams">TEAMS</a>
                                     <a aria-current="page" className="navbar_lin1__bGONE active" href="/Sponsors">SPONSORS</a>
                                     <a id="navbar_red1__MWKWk" className="navbar_lin1__bGONE" href="/BuyTickets">BUY TICKETS</a>
@@ -75,6 +76,7 @@ const Navbar = () => {
                 <div className="innermore">
                     <div className="navbar_right__5z6Ih">
                         <a className="navbar_lin__yrOtl" href="/">HOME</a>
+                        <a className="navbar_lin__yrOtl" href="/speaker">SPEAKERS</a>
                         <a className="navbar_lin__yrOtl" href="/Teams">TEAMS</a>
                         <a className="navbar_lin__yrOtl" href="/Sponsors">SPONSORS</a>
                         <a id="navbar_red__gXnY4" className="navbar_lin__yrOtl" href="/BuyTickets">BUY TICKETS</a>

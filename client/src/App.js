@@ -11,8 +11,7 @@ import Sponsors from './Sponsors';
 import Rough from './Roug';
 import ContactUs from './ContactUs';
 import BuyTickets from './BuyTickets';
-
-
+import Speaker from './speaker';
 
 function App() {
   return (
@@ -33,6 +32,9 @@ function App() {
             </Route>
             <Route path="/Sponsors">
               <Sponsors />
+            </Route>
+            <Route path="/speaker">
+              <Speaker /> {/* Added Speaker page */}
             </Route>
             <Route path="/rough">
               <Rough />
