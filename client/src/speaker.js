@@ -13,12 +13,12 @@ const profiles = [
       description: " Founder: MathsCare.Educator, Youtuber, Entrepreneur, Motivational Speaker.20+ years of math teaching experiencSix bestselling books Expert courses for IIT JAM, CSIR NET, GATE, and more.",
   },
   {
-      name: "Kezaia Caldeira",
+      name: "Ms. Kezaia Caldeira",
       image: "/speakers/missgoa.png",
       description: "EMiss Goa 2014 World City Queen 2016 Lifestyle Influencer Content creator with over 123k followers on instagram.",
   },
   {
-      name: "Jagdeep Singh",
+      name: "Mr. Jagdeep Singh",
       image: "/speakers/jagdeep.png",
       description: "Civil Servant Dept. of Industries & Commerce J&K JKAS (Jammu Kashmir Administrative Service) NIT Srinagar Alumni TEDx Speaker.",
   },

@@ -22,7 +22,7 @@ if (!allowedOrigins) {
   allowedOrigins = "http://localhost:3000"
 }
 app.use(cors({
-  rigin: function (origin, callback) {
+  origin: function (origin, callback) {
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
         callback(null, true);
     } else {
@@ -72,19 +72,46 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET
 });
 
-// Validation middleware
-const validateOrderInput = [
-  body('name').trim().isLength({ min: 2, max: 100 }).escape(),
-  body('email').isEmail().normalizeEmail(),
-  body('phone').isMobilePhone(),
-  body('ticketType').isIn(['general', 'vip', 'student']),
-  body('quantity').isInt({ min: 1, max: 30 })
-];
+// Dynamic Validation middleware
+const validateOrderInput = async (req, res, next) => {
+  // First, get the available tickets
+  try {
+    const totalTicketsSold = await Payment.aggregate([
+      { $match: { status: 'success' } },
+      { $group: { _id: null, total: { $sum: '$quantity' } } }
+    ]);
+
+    const availableTickets = 100 - (totalTicketsSold[0]?.total || 0);
+
+    // Define validation rules with dynamic max quantity
+    await Promise.all([
+      body('name').trim().isLength({ min: 2, max: 100 }).escape().run(req),
+      body('email').isEmail().normalizeEmail().run(req),
+      body('phone').isMobilePhone().run(req),
+      body('ticketType').isIn(['general', 'vip', 'student']).run(req),
+      body('quantity')
+        .isInt({ min: 1, max: availableTickets })
+        .withMessage(`Quantity cannot exceed available tickets (${availableTickets})`)
+        .run(req)
+    ]);
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: 'Validation failed', errors: errors.array() });
+    }
+
+    next();
+  } catch (error) {
+    console.error('Error validating order input:', error);
+    res.status(500).json({ message: 'Error validating order' });
+  }
+};
 
 // Routes
 app.get("/api/health",(req,res)=>{
   res.status(200).json({"status":"running"});
 })
+
 app.get('/api/available-tickets', async (req, res) => {
   try {
     const totalTicketsSold = await Payment.aggregate([
@@ -92,7 +119,7 @@ app.get('/api/available-tickets', async (req, res) => {
       { $group: { _id: null, total: { $sum: '$quantity' } } }
     ]);
 
-    const availableTickets = 30 - (totalTicketsSold[0]?.total || 0);
+    const availableTickets = 100 - (totalTicketsSold[0]?.total || 0);
     res.json({ availableTickets });
   } catch (error) {
     console.error('Error fetching available tickets:', error);
@@ -101,17 +128,12 @@ app.get('/api/available-tickets', async (req, res) => {
 });
 
 app.post('/api/create-order', validateOrderInput, async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ message: 'Validation failed', errors: errors.array() });
-  }
-
   const { name, email, phone, ticketType, quantity } = req.body;
 
   try {
     const ticketPrices = {
-      general: 750,
-      vip: 900,
+      general: 799,
+      vip: 949,
       student: 500
     };
     const amount = ticketPrices[ticketType] * quantity;
