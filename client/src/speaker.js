@@ -5,7 +5,7 @@ const profiles = [
     {
         name: "Mr. Niren Bhatt",
         image: "/speakers/niran.png",
-        description: "Screenwriter and Lyricist Writer of first 3000+ episodes of famous sitcom Tarak Mehta ka Oolta Chashma. Writer of superhit movies like Stree 2, Bhediya, Munjiya, Made in China, Bala, etc. Writer of superhit series like Asur, Insider Edge, Ray, etc.",
+        description: "Screenwriter and Lyricist; Writer of first 3000+ episodes of famous sitcom Tarak Mehta ka Oolta Chashma. Writer of superhit movies like Stree 2, Bhediya, Munjiya, Made in China, Bala, etc. Writer of superhit series like Asur, Insider Edge, Ray, etc.",
     },
   {
       name: "Dr. Gajendra Purohit",
@@ -15,7 +15,7 @@ const profiles = [
   {
       name: "Ms. Kezaia Caldeira",
       image: "/speakers/missgoa.png",
-      description: "EMiss Goa 2014 World City Queen 2016 Lifestyle Influencer Content creator with over 123k followers on instagram.",
+      description: "Emcee Miss Goa 2014; World City Queen 2016 Lifestyle Influencer Content creator with over 123k followers on instagram.",
   },
   {
       name: "Mr. Jagdeep Singh",
