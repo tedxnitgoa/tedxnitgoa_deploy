@@ -81,7 +81,7 @@ const validateOrderInput = async (req, res, next) => {
       { $group: { _id: null, total: { $sum: '$quantity' } } }
     ]);
 
-    const availableTickets = 100 - (totalTicketsSold[0]?.total || 0);
+    const availableTickets = 86 - (totalTicketsSold[0]?.total || 0);
 
     // Define validation rules with dynamic max quantity
     await Promise.all([
