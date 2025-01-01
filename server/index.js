@@ -119,7 +119,7 @@ app.get('/api/available-tickets', async (req, res) => {
       { $group: { _id: null, total: { $sum: '$quantity' } } }
     ]);
 
-    const availableTickets = 100 - (totalTicketsSold[0]?.total || 0);
+    const availableTickets = 86 - (totalTicketsSold[0]?.total || 0);
     res.json({ availableTickets });
   } catch (error) {
     console.error('Error fetching available tickets:', error);
