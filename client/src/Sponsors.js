@@ -141,43 +141,7 @@ const SponsorWheel = () => {
 };
 
 // Our sponsors
-const EventsSection = () => {
-  const events = [
-    {
-      title: 'Mall de Goa',
-      description: 'One of the largest malls in Goa, featuring a variety of brands and amusement activities for customers',
-      imageUrl: '/malldegoa.jpg' // Replace with actual image path
-    },
-    {
-      title: 'Chatrapati',
-      description: 'One of the largest Goa-based chains for snacks and Indian cuisine, attracting vegetarian customers.',
-      imageUrl: '/chatrapati223.jpg' // Replace with actual image path
-    }
-  ];
 
-  return (
-    <section style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'column',
-      padding: '3rem 0',
-      backgroundColor: '#000000'
-    }}>
-      <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: 'white' }}>Our Sponsors</h2>
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        flexWrap: 'wrap',
-      }}>
-        {events.map((event, index) => (
-          <Card key={index} {...event} />
-        ))}
-      </div>
-    </section>
-  );
-};
 
 const Card = ({ title, description, date, imageUrl }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -275,24 +239,103 @@ const EventReachSection = () => {
 };
 
 const Sponsors = () => {
+  const sponsorsData = {
+    platinum: [
+      {
+        title: 'Pratham Industries',
+        description: '',
+        imageUrl: '/platinum_pratham.jpg',
+      },
+      {
+        title: 'Mall De Goa',
+        description: '',
+        imageUrl: '/malldegoa_platinum.png',
+      },
+      {
+        title: 'Shreeji Group',
+        description: '',
+        imageUrl: '/shreeji_platinum.png',
+      },
+      {
+        title: 'Mayur',
+        description: '',
+        imageUrl: '/mayur_platinum.jpg',
+      },
+    ],
+    gold: [
+      {
+        title: 'Paras Metal Industries',
+        description: '',
+        imageUrl: '/Paras_indus_gold.jpg',
+      },
+    ],
+    silver: [
+      {
+        title: 'DNH Electricals',
+        description: '',
+        imageUrl: '/dnnelec_gold.png',
+      },
+    ],
+    bronze: [
+      {
+        title: 'Konark Research Foundation',
+        description: '',
+        imageUrl: '/konak_bronze.jpg',
+      },
+      {
+        title: 'Nagjua',
+        description: '',
+        imageUrl: '/nagajjuna_bronze.png',
+      },
+    ],
+  };
+
+  const SponsorSection = ({ title, sponsors }) => (
+    <section style={{ padding: '2rem 0', backgroundColor: '#1a1a1a' }}>
+      <h2 style={{ fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', color: '#fff', marginBottom: '1.5rem' }}>
+        {title}
+      </h2>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+          flexWrap: 'wrap',
+        }}
+      >
+        {sponsors.map((sponsor, index) => (
+          <Card key={index} {...sponsor} />
+        ))}
+      </div>
+    </section>
+  );
+
   return (
     <div className="sponsors">
       <section className="partners_centering__mEmQ2">
-        <div className="partners_title__cWB8o" style={{
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          width: '80vw',
-          color: 'white'
-        }}>
+        <div
+          className="partners_title__cWB8o"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '80vw',
+            color: 'white',
+          }}
+        >
           <span>Partner with TEDxNIT Goa</span>
         </div>
-        <p className="sponsors_para" style={{ 
-          width: '65vw', 
-          color: 'white'
-        }}>
+        <p
+          className="sponsors_para"
+          style={{
+            width: '65vw',
+            color: 'white',
+          }}
+        >
           <span className="partners_content__XGtJa" style={{ color: 'white' }}>
-            Join TEDxNITGoa as a sponsor to support innovation and engage with some of the brightest minds in the country. NIT Goa, a top technical institute, offers unparalleled brand visibility and a chance to connect with future leaders, engineers, and entrepreneurs shaping the future.
+            Join TEDxNITGoa as a sponsor to support innovation and engage with some of the brightest minds in the
+            country. NIT Goa, a top technical institute, offers unparalleled brand visibility and a chance to connect
+            with future leaders, engineers, and entrepreneurs shaping the future.
           </span>
         </p>
         <a className="partners_button__nkcDD" href="https://forms.gle/Py4gC3igyZgdD7HU7">
@@ -300,27 +343,38 @@ const Sponsors = () => {
         </a>
       </section>
 
-      <section style={{
-        background: 'rgba(0, 0, 0, 0.9)',
-        minHeight: '90vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '2rem 0'
-      }}>
+      <section
+        style={{
+          background: 'rgba(0, 0, 0, 0.9)',
+          minHeight: '90vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '2rem 0',
+        }}
+      >
         <SponsorWheel />
-        
       </section>
-   
-      {/* Add the Event Reach section here */}
+
+      {/* Event Reach Section */}
       <EventReachSection />
-      {/* Add the new EventsSection */}
-      <EventsSection />
-      
-     
+
+      {/* Platinum Sponsors */}
+      <SponsorSection title="Platinum Sponsors" sponsors={sponsorsData.platinum} />
+
+      {/* Gold Sponsors */}
+      <SponsorSection title="Gold Sponsors" sponsors={sponsorsData.gold} />
+
+      {/* Silver Sponsors */}
+      <SponsorSection title="Silver Sponsors" sponsors={sponsorsData.silver} />
+
+      {/* Bronze Sponsors */}
+      <SponsorSection title="Bronze Sponsors" sponsors={sponsorsData.bronze} />
+
+      {/* Our Sponsors */}
     </div>
-  )
-    
+  );
 };
+
 
 export default Sponsors;
