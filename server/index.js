@@ -81,7 +81,7 @@ const validateOrderInput = async (req, res, next) => {
       { $group: { _id: null, total: { $sum: '$quantity' } } }
     ]);
 
-    const availableTickets = 36 - (totalTicketsSold[0]?.total || 0);
+    const availableTickets = 27 - (totalTicketsSold[0]?.total || 0);
 
     // Define validation rules with dynamic max quantity
     await Promise.all([
@@ -119,7 +119,7 @@ app.get('/api/available-tickets', async (req, res) => {
       { $group: { _id: null, total: { $sum: '$quantity' } } }
     ]);
 
-    const availableTickets = 36 - (totalTicketsSold[0]?.total || 0);
+    const availableTickets = 27 - (totalTicketsSold[0]?.total || 0);
     res.json({ availableTickets });
   } catch (error) {
     console.error('Error fetching available tickets:', error);
